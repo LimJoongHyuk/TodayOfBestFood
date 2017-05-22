@@ -14,6 +14,6 @@ public class DataInputActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datainput);
 
-        //업데이트 테스트 주석
+        //업데이트 테스트 주석  1123
     }
 }

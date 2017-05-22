@@ -36,9 +36,9 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    app:srcCompat="@drawable/잠만보"/>
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/a"/>
 
                 <RatingBar
                     android:id="@+id/ratingBar"
@@ -54,7 +54,7 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="가계이름"
+                android:text="식당명"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textAlignment="center"/>
@@ -71,6 +71,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="추천메뉴"
+                android:textSize="20dp"/>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="전화번호"
                 android:textSize="20dp"/>
 
             <Button

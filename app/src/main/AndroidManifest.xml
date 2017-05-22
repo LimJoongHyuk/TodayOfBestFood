@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".SelectActivity">
         </activity>
+        <activity android:name=".DataInputActivity"></activity>
     </application>
 
 </manifest>

@@ -1,8 +1,5 @@
 package com.example.jh.todayofbestfood;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 /**
  * Created by jh on 2017-05-22.
  */
@@ -12,9 +9,34 @@ public class FoodOfBestInfo{
     private String _restaurant_address;
     private String _restaurant_recommend_food;
     private float _restaurant_grade;//ratingBar 평점
-    private String _food_postscript;//한줄 평
+    private String _restaurant_latitude; // 위도
+    private String _restaurant_longitude; // 경도
+    private String _food_image_name; // 이미지 이름
 
 
+    public String get_restaurant_latitude() {
+        return _restaurant_latitude;
+    }
+
+    public void set_restaurant_latitude(String _restaurant_latitude) {
+        this._restaurant_latitude = _restaurant_latitude;
+    }
+
+    public String get_restaurant_longitude() {
+        return _restaurant_longitude;
+    }
+
+    public void set_restaurant_longitude(String _restaurant_longitude) {
+        this._restaurant_longitude = _restaurant_longitude;
+    }
+
+    public String get_food_image_name() {
+        return _food_image_name;
+    }
+
+    public void set_food_image_name(String _food_image_name) {
+        this._food_image_name = _food_image_name;
+    }
 
     public String getRestaurant_name() {
         return _restaurant_name;
@@ -48,11 +70,5 @@ public class FoodOfBestInfo{
         _restaurant_grade = restaurant_grade;
     }
 
-    public String getFood_postscript() {
-        return _food_postscript;
-    }
 
-    public void setFood_postscript(String food_postscript) {
-        _food_postscript = food_postscript;
-    }
 }

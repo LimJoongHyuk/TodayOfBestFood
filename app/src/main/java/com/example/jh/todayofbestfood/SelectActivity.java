@@ -18,25 +18,33 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class SelectActivity extends AppCompatActivity{
+public class SelectActivity extends AppCompatActivity {
 
     private static final String TAG = "SelectActivity";
 
     SupportMapFragment mapFragment;
     GoogleMap map;
+    private MarkerOptions _markerOptions;
+    static final LatLng SEOUL = new LatLng(37.56, 126.97);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
 
-        mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.mapView);
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 Log.d(TAG, "GoogleMap is ready.");
 
                 map = googleMap;
+
+                _markerOptions = new MarkerOptions();
+                _markerOptions.position(SEOUL);
+                map.addMarker(_markerOptions);
+                map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
+                map.animateCamera(CameraUpdateFactory.zoomTo(15));
             }
         });
 
@@ -53,8 +61,6 @@ public class SelectActivity extends AppCompatActivity{
         button_review.setOnClickListener(this::reviewButtonClick);
     }
 
-
-
     private void reviewButtonClick(View view) {
         Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
         startActivity(intent);
@@ -67,7 +73,6 @@ public class SelectActivity extends AppCompatActivity{
     private void requestMyLocation() {
         LocationManager manager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
         try {
             long minTime = 10000;
             float minDistance = 0;
@@ -130,7 +135,6 @@ public class SelectActivity extends AppCompatActivity{
                     }
             );
 
-
         } catch(SecurityException e) {
             e.printStackTrace();
         }
@@ -139,12 +143,12 @@ public class SelectActivity extends AppCompatActivity{
     private void showCurrentLocation(Location location) {
         LatLng curPoint = new LatLng(location.getLatitude(), location.getLongitude());
 
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
+        _markerOptions = new MarkerOptions();
+        _markerOptions.position(curPoint);
+        _markerOptions.title("현재 위치");
 
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(curPoint);
-        markerOptions.title("현재 위치");
-        map.addMarker(markerOptions);
+        map.clear();
+        map.addMarker(_markerOptions);
 
         map.moveCamera(CameraUpdateFactory.newLatLng(curPoint));
         map.animateCamera(CameraUpdateFactory.zoomTo(15));

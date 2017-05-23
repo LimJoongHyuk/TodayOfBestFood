@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 
 public class ReviewOutputAdapter extends RecyclerView.Adapter<ReviewOutputAdapter.ViewHolder> {
-
+//
     private ArrayList<FoodOfBestInfo> _FoodOfBestInfoArrayList;
 
     public ReviewOutputAdapter(ArrayList<FoodOfBestInfo> foodOfBestInfoArrayList) {

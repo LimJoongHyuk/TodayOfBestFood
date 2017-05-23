@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <fragment
-        android:id="@+id/fragment_map"
+        android:id="@+id/mapView"
+        class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        class="com.google.android.gms.maps.MapFragment">
+        android:layout_height="244dp">
 
     </fragment>
 

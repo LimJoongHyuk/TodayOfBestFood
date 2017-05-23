@@ -14,10 +14,10 @@ import java.util.ArrayList;
 
 public class ReviewOutputAdapter extends RecyclerView.Adapter<ReviewOutputAdapter.ViewHolder> {
 //
-    private ArrayList<FoodOfBestInfo> _FoodOfBestInfoArrayList;
+    private ArrayList<ReviewInfo> _reviewInfoArrayList;
 
-    public ReviewOutputAdapter(ArrayList<FoodOfBestInfo> foodOfBestInfoArrayList) {
-        _FoodOfBestInfoArrayList = foodOfBestInfoArrayList;
+    public ReviewOutputAdapter(ArrayList<ReviewInfo> reviewInfoArrayList) {
+        _reviewInfoArrayList = reviewInfoArrayList;
     }
 
     //ViewHolder를 만들때
@@ -29,16 +29,16 @@ public class ReviewOutputAdapter extends RecyclerView.Adapter<ReviewOutputAdapte
 
     @Override
     public void onBindViewHolder(ReviewOutputAdapter.ViewHolder holder, int position) {
-        FoodOfBestInfo foodOfBestInfo = new FoodOfBestInfo();
+        ReviewInfo reviewInfo = new ReviewInfo();
         holder._reviewSelect_TV.setText(
-                  foodOfBestInfo.getFood_postscript() +
+                reviewInfo.get_food_postscript() +
                 "\n"
-                + foodOfBestInfo.getRestaurant_grade() );
+                +reviewInfo.get_restaurant_add_grade() );
     }
 
     @Override
     public int getItemCount() {
-        return _FoodOfBestInfoArrayList.size();
+        return _reviewInfoArrayList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{

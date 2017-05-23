@@ -1,6 +1,5 @@
 package com.example.jh.todayofbestfood;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -32,7 +31,7 @@ public class ReviewActivity extends AppCompatActivity {
 
         _recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
-        ArrayList<FoodOfBestInfo> foodOfBestInfos = loadData();
+        ArrayList<ReviewInfo> foodOfBestInfos = loadData();
         //adapter와 foodofbestinfo 연결
         ReviewOutputAdapter adapter = new ReviewOutputAdapter(foodOfBestInfos);
         //recyclerview에 adapter 연결
@@ -46,16 +45,16 @@ public class ReviewActivity extends AppCompatActivity {
 
     }//end onCreate
 
-    private ArrayList<FoodOfBestInfo> loadData(){
+    private ArrayList<ReviewInfo> loadData(){
 
-        ArrayList<FoodOfBestInfo> foodOfBestInfos = new ArrayList<>();
+        ArrayList<ReviewInfo> foodOfBestInfos = new ArrayList<>();
 
         for(int i=0; i<10; i++){
-            FoodOfBestInfo foodOfBestInfo = new FoodOfBestInfo();
-            foodOfBestInfo.setFood_postscript("후기 " + i);
-            foodOfBestInfo.setRestaurant_grade(1 + i);
+            ReviewInfo reviewinfo = new ReviewInfo();
+            reviewinfo.set_food_postscript("후기 " + i);
+            reviewinfo.set_restaurant_add_grade(1 + i);
 
-            foodOfBestInfos.add(foodOfBestInfo);
+            foodOfBestInfos.add(reviewinfo);
         }
 
 

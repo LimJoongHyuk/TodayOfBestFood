@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        class="com.google.android.gms.maps.MapFragment"
+        class="com.google.android.gms.maps.SupportMapFragment"
         />
 
     <ScrollView
@@ -26,7 +26,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
+            <Button
+                android:id="@+id/btnLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="위치 찾기"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -79,13 +83,16 @@
                 android:textSize="20dp"/>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="리뷰"
                 android:textSize="20dp"/>
 
+
         </LinearLayout>
 
     </ScrollView>
+
+
 </LinearLayout>

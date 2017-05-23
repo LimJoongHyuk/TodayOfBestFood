@@ -27,6 +27,8 @@ public class FoodMap extends Activity {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SEOUL, 15));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
     }
+
+
 }
 
 

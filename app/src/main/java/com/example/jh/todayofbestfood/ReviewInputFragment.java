@@ -33,6 +33,14 @@ public class ReviewInputFragment extends Fragment {
         RatingBar inputGrade_RB = (RatingBar)fragment.findViewById(R.id.inputGrade_RB);
         Button inputOperation_BT =(Button)fragment.findViewById(R.id.inputOperation_BT);
 
+        inputOperation_BT.setOnClickListener(this::inputOperationButtonClick);
+
         return fragment;
     }
+
+    private void inputOperationButtonClick(View view) {
+
+    }
+
+
 }

@@ -36,9 +36,10 @@
         <activity android:name=".DataInputActivity"></activity>
 
         <activity android:name=".MainActivity"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCfTN9Ma0EKKxpLOXSza21cxyd2PJiAPjw" />
     </application>
 
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyCfTN9Ma0EKKxpLOXSza21cxyd2PJiAPjw" />
+
 </manifest>

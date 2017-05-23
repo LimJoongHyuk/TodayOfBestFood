@@ -10,8 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:name="com.example.jh.todayofbestfood.MapFragment"
-        android:id="@+id/mapFragment"></fragment>
+        class="com.example.jh.todayofbestfood.SelectActivity"
+        android:id="@+id/map">
+
+    </fragment>
 
     <ScrollView
         android:layout_width="match_parent"

@@ -19,31 +19,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        button_select = (Button) findViewById(btnSelect);
-        button_dataInput = (Button) findViewById(btnAdd);
 
-        button_select.setOnClickListener(mClickListener);
-        button_dataInput.setOnClickListener(mClickListener);
+        button_dataInput = (Button) findViewById(R.id.btnAdd);
+        button_select = (Button) findViewById(R.id.btnSearch);
+
+        button_select.setOnClickListener(this::addButtonClick);
+        button_dataInput.setOnClickListener(this::searchButtonClick);
     }
 
-    private View.OnClickListener mClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent _intent;
+    private void addButtonClick(View view) {
 
-            switch ( v.getId() ) {
-                case btnSelect:
+    }
+
+    private void searchButtonClick(View view) {
+        Intent intent = new Intent(getApplicationContext(), SelectActivity.class);
+        startActivity(intent);
+    }
 
 
-                    _intent = new Intent(getApplicationContext(), SelectActivity.class);
-                    startActivity(_intent);
-                    break;
 
-                case btnAdd:
-                    _intent = new Intent(MainActivity.this, Camera.class);
-                    startActivityForResult(_intent, 1);
-                    break;
-            }
-        }
-    };
-}
+
+}//end MainActivity

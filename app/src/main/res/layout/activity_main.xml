@@ -26,5 +26,5 @@
         android:layout_weight="1"
         android:text="맛집 검색"
         android:textSize="25dp"
-        android:id="@+id/btnSelect"/>
+        android:id="@+id/btnSearch"/>
 </LinearLayout>

@@ -3,16 +3,12 @@ package com.example.jh.todayofbestfood;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
-
-import java.util.ArrayList;
 
 /**
  * Created by pdg on 2017-05-22.
@@ -20,9 +16,9 @@ import java.util.ArrayList;
 
 public class ReviewInputFragment extends Fragment {
 
-    private EditText inputReview_ET;
-    private RatingBar inputGrade_RB;
-    private Button inputOperation_BT;
+    private EditText _inputReview_ET;
+    private RatingBar _inputGrade_RB;
+    private Button _inputOperation_BT;
 
 
     @Nullable
@@ -39,7 +35,11 @@ public class ReviewInputFragment extends Fragment {
     }
 
     private void inputOperationButtonClick(View view) {
+        DatabaseManager databaseManager = new DatabaseManager();
 
+        databaseManager.getVisitReviewInfo(
+                _inputReview_ET.getText().toString(),
+                _inputGrade_RB.getStepSize());
     }
 
 

@@ -13,7 +13,7 @@ import static java.sql.DriverManager.println;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static String DB_NAME = "TodayOfBestFood";
     private static int DB_VERSION = 1;
-
+//
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);

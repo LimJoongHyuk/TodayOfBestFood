@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.CAMERA" android:required="true"/>
     <!-- 구글맵 권한설정 -->
 
     <uses-permission android:name="com.ebookfrenzy.capstone.locationapi.maps.permission.MAPS_RECEIVE" />
@@ -25,20 +25,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ReviewActivity">
+
+        </activity>
+        <activity android:name=".SelectActivity">
+        </activity>
+        <activity android:name=".DataInputActivity"></activity>
+
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SelectActivity">
-        </activity>
-        <activity android:name=".DataInputActivity"></activity>
-
-        <activity android:name=".MainActivity"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCfTN9Ma0EKKxpLOXSza21cxyd2PJiAPjw" />
     </application>
 
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyCfTN9Ma0EKKxpLOXSza21cxyd2PJiAPjw" />
+
 </manifest>

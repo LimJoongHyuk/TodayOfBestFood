@@ -1,11 +1,9 @@
 package com.example.jh.todayofbestfood;
 
-import java.io.Serializable;
-
 /**
  * Created by jh on 2017-05-23.
  */
-public class FoodOfBestInfo implements Serializable {
+public class FoodOfBestInfo {
      private String _restaurant_name;
      private String _restaurant_address;
      private String _restaurant_recommend_food;

@@ -1,6 +1,5 @@
 package com.example.jh.todayofbestfood;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -10,8 +9,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 
-import java.util.ArrayList;
-
 /**
  * Created by jh on 2017-05-22.
  */
@@ -19,10 +16,7 @@ import java.util.ArrayList;
 public class DataInputActivity extends AppCompatActivity {
 
 
-    private DatabaseHelper dbHelper;
-    private SQLiteDatabase db;
-    private DatabaseQuery db_query;
-    private ArrayList<FoodOfBestInfo> foodDataInfo ;
+
 
     EditText editText_restaurantName;
     EditText editText_restaurant_recommend_food;
@@ -45,15 +39,11 @@ public class DataInputActivity extends AppCompatActivity {
 
 
 
-
-
-
-
         Button btn_dataInput = (Button)findViewById(R.id.button_input);
         btn_dataInput.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openDataBase();
+
             }
         });
 
@@ -65,17 +55,6 @@ public class DataInputActivity extends AppCompatActivity {
 
 
 
-    private boolean openDataBase(){
-        dbHelper = new DatabaseHelper(this);
-        db = dbHelper.getWritableDatabase();
-        return true;
-    }
-    private void insertData(){
-        db_query = new DatabaseQuery();
-        db.execSQL(db_query.onInsertRestaurantData().toString());
-
-
-    }
 
 
 

@@ -1,5 +1,7 @@
 package com.example.jh.todayofbestfood;
 
+import java.util.ArrayList;
+
 /**
  * Created by smh on 2017-05-22.
  */
@@ -30,9 +32,7 @@ public class DatabaseQuery {
 
     }
 
-    public DatabaseQuery(String _restaurant_name, String _restaurant_address, String _restaurant_recommend_food,
-                         float _restaurant_grade, String _restaurant_latitude,
-                         String _restaurant_longitude, String _food_image_name, String _postscript) {
+    public DatabaseQuery(ArrayList<FoodOfBestInfo> data) {
         this._restaurant_name = _restaurant_name;
         this._restaurant_address = _restaurant_address;
         this._restaurant_recommend_food = _restaurant_recommend_food;

@@ -19,6 +19,8 @@
         <activity android:name=".SelectActivity">
         </activity>
         <activity android:name=".DataInputActivity"></activity>
+
+        <activity android:name=".ReviewActivity"/>
     </application>
 
 </manifest>

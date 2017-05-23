@@ -11,7 +11,8 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:hint="한줄 평 입력"/>
+                android:hint="한줄 평 입력"
+                android:id="@+id/inputReview_ET"/>
 
         </TableRow>
 
@@ -19,15 +20,17 @@
             android:weightSum="3">
 
             <RatingBar
-                android:id="@+id/ratingBar2"
+                android:id="@+id/inputGrade_RB"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                />
             <Button
-                android:id="@+id/input_BT"
+                android:id="@+id/inputOperation_BT"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:text="후기 등록"
                 />
         </TableRow>
 </TableLayout>

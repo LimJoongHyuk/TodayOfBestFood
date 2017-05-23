@@ -29,8 +29,11 @@ public class ReviewOutputAdapter extends RecyclerView.Adapter<ReviewOutputAdapte
 
     @Override
     public void onBindViewHolder(ReviewOutputAdapter.ViewHolder holder, int position) {
-        FoodOfBestInfo foodOfBestInfo = _FoodOfBestInfoArrayList.get(position);
-        holder.reviewSelect_TV.setText(foodOfBestInfo.getFood_postscript() + "\n" + foodOfBestInfo.getRestaurant_grade());
+        FoodOfBestInfo foodOfBestInfo = new FoodOfBestInfo();
+        holder._reviewSelect_TV.setText(
+                  foodOfBestInfo.getFood_postscript() +
+                "\n"
+                + foodOfBestInfo.getRestaurant_grade() );
     }
 
     @Override
@@ -39,11 +42,13 @@ public class ReviewOutputAdapter extends RecyclerView.Adapter<ReviewOutputAdapte
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
+        TextView _reviewSelect_TV;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            reviewSelect_TV = (TextView)itemView.findViewById(R.id.reviewSelect_TV);
+            _reviewSelect_TV = (TextView)itemView.findViewById(R.id.reviewSelect_TV);
         }
 
-        TextView reviewSelect_TV;
+
     }
 }

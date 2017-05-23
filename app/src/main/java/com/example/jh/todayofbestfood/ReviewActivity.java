@@ -23,21 +23,47 @@ public class ReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 
+        //fragment
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        final ReviewInputFragment reviewInputFragment = (ReviewInputFragment)fragmentManager.findFragmentById(R.id.reviewinput);
+        //
+
+
+        _recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
+
+        ArrayList<FoodOfBestInfo> foodOfBestInfos = loadData();
+        //adapter와 foodofbestinfo 연결
+        ReviewOutputAdapter adapter = new ReviewOutputAdapter(foodOfBestInfos);
+        //recyclerview에 adapter 연결
+        _recyclerView.setAdapter(adapter);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        _recyclerView.setLayoutManager(layoutManager);
+        _recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
 
-    }
+    }//end onCreate
 
     private ArrayList<FoodOfBestInfo> loadData(){
-        ArrayList<FoodOfBestInfo> foodOfBestInfoArrayList = new ArrayList<>();
+
+        ArrayList<FoodOfBestInfo> foodOfBestInfos = new ArrayList<>();
+
+        for(int i=0; i<10; i++){
+            FoodOfBestInfo foodOfBestInfo = new FoodOfBestInfo();
+            foodOfBestInfo.setFood_postscript("후기 " + i);
+            foodOfBestInfo.setRestaurant_grade(1 + i);
+
+            foodOfBestInfos.add(foodOfBestInfo);
+        }
 
 
-
-
-
-
-
-        return foodOfBestInfoArrayList;
+        return foodOfBestInfos;
     }
+
+
+
+
 }
 

@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addButtonClick(View view) {
-
+            //
     }
 
     private void searchButtonClick(View view) {

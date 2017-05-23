@@ -11,8 +11,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class SelectActivity extends AppCompatActivity implements OnMapReadyCallback{
-
+public class SelectActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +20,7 @@ public class SelectActivity extends AppCompatActivity implements OnMapReadyCallb
 
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment mapFragment = (MapFragment)fragmentManager
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
     }
 
@@ -39,4 +38,5 @@ public class SelectActivity extends AppCompatActivity implements OnMapReadyCallb
         map.moveCamera(CameraUpdateFactory.newLatLng(SEOUL));
         map.animateCamera(CameraUpdateFactory.zoomTo(10));
     }
+
 }

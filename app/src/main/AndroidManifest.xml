@@ -7,12 +7,9 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <!-- 구글맵 권한설정 -->
 
-    <uses-permission android:name="com.ebookfrenzy.capstone.locationapi.maps.permission.MAPS_RECEIVE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <!--  구글맵권한 설정 끝-->
 
@@ -24,21 +21,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCfTN9Ma0EKKxpLOXSza21cxyd2PJiAPjw" />
+
+
         <activity android:name=".ReviewActivity">
+
+        </activity>
+        <activity android:name=".SelectActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".SelectActivity">
-        </activity>
         <activity android:name=".DataInputActivity"></activity>
 
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity">
+
+        </activity>
     </application>
 
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyCfTN9Ma0EKKxpLOXSza21cxyd2PJiAPjw" />
 </manifest>

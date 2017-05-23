@@ -2,18 +2,20 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".SelectActivity"
+    >
 
     <fragment
+        android:id="@+id/mapView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        class="com.example.jh.todayofbestfood.SelectActivity"
-        android:id="@+id/map">
-
-    </fragment>
+        class="com.google.android.gms.maps.MapFragment"
+        />
 
     <ScrollView
         android:layout_width="match_parent"

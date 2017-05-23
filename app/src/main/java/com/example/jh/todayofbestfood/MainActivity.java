@@ -6,8 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import static com.example.jh.todayofbestfood.R.id.btnAdd;
-import static com.example.jh.todayofbestfood.R.id.btnSelect;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,12 +21,13 @@ public class MainActivity extends AppCompatActivity {
         button_dataInput = (Button) findViewById(R.id.btnAdd);
         button_select = (Button) findViewById(R.id.btnSearch);
 
-        button_select.setOnClickListener(this::addButtonClick);
-        button_dataInput.setOnClickListener(this::searchButtonClick);
+        button_select.setOnClickListener(this::searchButtonClick);
+        button_dataInput.setOnClickListener(this::addButtonClick);
     }
 
     private void addButtonClick(View view) {
-
+        Intent intent = new Intent(getApplicationContext(), DataInputActivity.class);
+        startActivity(intent);
     }
 
     private void searchButtonClick(View view) {

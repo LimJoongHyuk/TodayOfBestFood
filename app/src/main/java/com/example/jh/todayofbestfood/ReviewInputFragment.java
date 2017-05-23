@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 /**
  * Created by pdg on 2017-05-22.
@@ -25,21 +26,25 @@ public class ReviewInputFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ViewGroup fragment = (ViewGroup)inflater.inflate(R.layout.fragment_reviewinput, container, false);
-        EditText inputReview_ET = (EditText)fragment.findViewById(R.id.inputReview_ET);
-        RatingBar inputGrade_RB = (RatingBar)fragment.findViewById(R.id.inputGrade_RB);
-        Button inputOperation_BT =(Button)fragment.findViewById(R.id.inputOperation_BT);
+        _inputReview_ET = (EditText)fragment.findViewById(R.id.inputReview_ET);
+        _inputGrade_RB = (RatingBar)fragment.findViewById(R.id.inputGrade_RB);
+        _inputOperation_BT =(Button)fragment.findViewById(R.id.inputOperation_BT);
 
-        inputOperation_BT.setOnClickListener(this::inputOperationButtonClick);
+        _inputOperation_BT.setOnClickListener(this::inputOperationButtonClick);
 
         return fragment;
     }
 
-    private void inputOperationButtonClick(View view) {
+    public void inputOperationButtonClick(View view) {
         DatabaseManager databaseManager = new DatabaseManager();
 
-        databaseManager.getVisitReviewInfo(
-                _inputReview_ET.getText().toString(),
-                _inputGrade_RB.getStepSize());
+//        databaseManager.getVisitReviewInfo(
+//                _inputReview_ET.getText().toString(),
+//                _inputGrade_RB.getStepSize());
+
+        System.out.println("입력 리뷰" + _inputReview_ET.getText().toString());
+
+        System.out.println("입력 평점" + String.valueOf(_inputGrade_RB.getRating()));
     }
 
 

@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private void searchButtonClick(View view) {
         Intent intent = new Intent(getApplicationContext(), SelectActivity.class);
         startActivity(intent);
-        Toast.makeText(getApplicationContext(), "클릭", Toast.LENGTH_SHORT).show();
     }
 
 

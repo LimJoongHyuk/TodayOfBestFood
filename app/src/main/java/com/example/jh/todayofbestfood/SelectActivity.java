@@ -32,8 +32,6 @@ public class SelectActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
 
-
-
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -63,8 +61,6 @@ public class SelectActivity extends AppCompatActivity {
         button_review.setOnClickListener(this::reviewButtonClick);
     }
 
-
-
     private void reviewButtonClick(View view) {
         Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
         startActivity(intent);
@@ -77,7 +73,6 @@ public class SelectActivity extends AppCompatActivity {
     private void requestMyLocation() {
         LocationManager manager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
         try {
             long minTime = 10000;
             float minDistance = 0;
@@ -140,7 +135,6 @@ public class SelectActivity extends AppCompatActivity {
                     }
             );
 
-
         } catch(SecurityException e) {
             e.printStackTrace();
         }
@@ -159,5 +153,4 @@ public class SelectActivity extends AppCompatActivity {
         map.moveCamera(CameraUpdateFactory.newLatLng(curPoint));
         map.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
-
 }

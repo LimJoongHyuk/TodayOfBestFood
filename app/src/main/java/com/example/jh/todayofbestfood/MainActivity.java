@@ -6,8 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import static com.example.jh.todayofbestfood.R.id.btnAdd;
-import static com.example.jh.todayofbestfood.R.id.btnSelect;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button_dataInput = (Button) findViewById(R.id.btnAdd);
+        button_dataInput = (Button) findViewById(R.id.btninput);
         button_select = (Button) findViewById(R.id.btnSearch);
 
         button_select.setOnClickListener(this::addButtonClick);

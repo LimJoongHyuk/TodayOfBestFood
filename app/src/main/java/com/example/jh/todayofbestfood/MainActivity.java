@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
     private Button button_select;
@@ -18,16 +19,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button_dataInput = (Button) findViewById(R.id.btnAdd);
+        button_dataInput = (Button) findViewById(R.id.btninput);
         button_select = (Button) findViewById(R.id.btnSearch);
 
-        button_select.setOnClickListener(this::searchButtonClick);
-        button_dataInput.setOnClickListener(this::addButtonClick);
+        button_select.setOnClickListener(this::addButtonClick);
+        button_dataInput.setOnClickListener(this::searchButtonClick);
     }
 
     private void addButtonClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), DataInputActivity.class);
-        startActivity(intent);
+            //
     }
 
     private void searchButtonClick(View view) {

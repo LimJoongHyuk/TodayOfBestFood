@@ -21,7 +21,7 @@ public class Database {
             db = dbHelper.getWritableDatabase();
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("DB 생성 실패");
+            System.out.println("DB 생성 실패!");
         }
     }
 

@@ -27,6 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
@@ -41,6 +42,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         println("버전" + oldVersion + " 에서 버전" + newVersion + " 으로 업데이트 되었습니다.");
+    }
+
+    public void createInputTable(){
+
+    }
+
+    public void createReviewTable(){
+
     }
 
 }

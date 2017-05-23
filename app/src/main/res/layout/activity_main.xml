@@ -18,7 +18,7 @@
         android:layout_weight="1"
         android:text="맛집 등록"
         android:textSize="25dp"
-        android:id="@+id/btnAdd"/>
+        android:id="@+id/btninput"/>
 
     <Button
         android:layout_width="match_parent"

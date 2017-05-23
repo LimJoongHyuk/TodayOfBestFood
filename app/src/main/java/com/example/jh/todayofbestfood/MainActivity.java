@@ -2,17 +2,16 @@ package com.example.jh.todayofbestfood;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import static com.example.jh.todayofbestfood.R.id.btnAdd;
-import static com.example.jh.todayofbestfood.R.id.btnSelect;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button_select;
-    private Button button_dataInput;
+    private Button _SearchButton;
+    private Button _inputButton;
 
 
     @Override
@@ -20,14 +19,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button_dataInput = (Button) findViewById(R.id.btnAdd);
-        button_select = (Button) findViewById(R.id.btnSearch);
+        _inputButton = (Button) findViewById(R.id.btninput);
+        _SearchButton = (Button) findViewById(R.id.btnSearch);
 
-        button_select.setOnClickListener(this::addButtonClick);
-        button_dataInput.setOnClickListener(this::searchButtonClick);
+        _inputButton.setOnClickListener(this::inputButtonClick);
+        _SearchButton.setOnClickListener(this::searchButtonClick);
     }
 
-    private void addButtonClick(View view) {
+    private void inputButtonClick(View view) {
 
     }
 

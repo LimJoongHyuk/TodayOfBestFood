@@ -6,8 +6,5 @@ package com.example.jh.todayofbestfood;
 
 public class DatabaseHandler {
 
-    public void createTable(String TableName) {
-
-    }
 
 }

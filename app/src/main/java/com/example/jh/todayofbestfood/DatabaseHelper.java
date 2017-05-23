@@ -13,7 +13,8 @@ import static java.sql.DriverManager.println;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static String DB_NAME = "TodayOfBestFood";
     private static int DB_VERSION = 1;
-//
+    private DatabaseQuery db_query;
+
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -28,7 +29,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-
+        try {
+            db_query = new DatabaseQuery();
+            db.execSQL(db_query.onCreateTable_restaurant().toString());
+            db.execSQL(db_query.onCreateTable_review().toString());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

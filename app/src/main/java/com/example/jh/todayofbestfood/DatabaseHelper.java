@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import static java.sql.DriverManager.println;
 
@@ -20,9 +21,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String REGISTER_KEY = "REGISTER";
     public static final String REVIEW_KEY = "REVIEW";
 
+    private Context _context;
 
     public DatabaseHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
+        _context = context;
     }
 
     @Override
@@ -39,8 +42,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db_query = new DatabaseQuery();
             db.execSQL(db_query.onCreateTable_restaurant().toString());
             db.execSQL(db_query.onCreateTable_review().toString());
+            Toast.makeText(_context, "Table 생성완료", Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             e.printStackTrace();
+            String test = db_query.onCreateTable_review().toString();
+            Toast.makeText(_context, test, Toast.LENGTH_LONG).show();
+            Toast.makeText(_context, "Table 생성실패", Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -18,8 +18,6 @@ public class DatabaseQuery extends Activity{
     public static final String REGISTER_KEY = "REGISTER";
     public static final String REVIEW_KEY = "REVIEW";
 
-    public static final String REVIEW_TABLENAME ="Review";
-    public static final String RESTAURANT_TABLENAME ="Restaurant";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +40,7 @@ public class DatabaseQuery extends Activity{
 
         ReviewParcelable reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
 
-        SQL_QUERY = "Insert into " + REVIEW_TABLENAME + " values(null, '" + reviewParcelable.getscript().toString() + "' , " +
+        SQL_QUERY = "Insert into " + REVIEW_TABLE_NAME + " values(null, '" + reviewParcelable.getscript().toString() + "' , " +
                 " " + reviewParcelable.getgrade() + " ; ";
 
         return SQL_QUERY;
@@ -50,28 +48,25 @@ public class DatabaseQuery extends Activity{
 
     // 음식점 테이블 생성
     public String onCreateTable_restaurant(){
-        SQL_QUERY = "create table "+ RESTAURANT_TABLE_NAME +
-                "(restaurant_id integer PRIMARY KEY autoincrement," +
-                "restaurant_name text PRIMARY KEY," +
-                "restaurant_address text," +
-                "restaurant_recommend_food text," +
-                "restaurant_grade text," +
-                "restaurant_latitude text," +
-                "restaurant_longitude text," +
-                "food_image_name text)" ;
+        SQL_QUERY = "create table if not exists "+ RESTAURANT_TABLE_NAME +
+                " (restaurant_id integer PRIMARY KEY autoincrement, " +
+                "restaurant_name text, " +
+                "restaurant_address text, " +
+                "restaurant_recommend_food text, " +
+                "restaurant_grade text, " +
+                "restaurant_latitude text, " +
+                "restaurant_longitude text, " +
+                "food_image_name text);" ;
         return SQL_QUERY;
     }
 
     //리뷰 테이블 생성
     public String onCreateTable_review(){
-        SQL_QUERY = "create table " + REVIEW_TABLE_NAME +
-                "(id integer PRIMARY KEY autoincrement,"+
-                "restaurant_name text,"+
-                "food_postscript text,"+
-                "restaurant_add_grade text,"+
-                "FOREIGN KEY(restaurant_name)," +
-                "REFERENCES "+RESTAURANT_TABLE_NAME + "(restaurant_name)"+
-                ")";
+        SQL_QUERY = "create table if not exists " + REVIEW_TABLE_NAME +
+                "(id integer PRIMARY KEY autoincrement, "+
+                "restaurant_id integer REFERENCES " + RESTAURANT_TABLE_NAME + "(restaurant_id) on delete cascade, "+
+                "food_postscript text, "+
+                "restaurant_add_grade text);";
         return SQL_QUERY;
     }
 
@@ -95,7 +90,7 @@ public class DatabaseQuery extends Activity{
         FoodofBestParcelable foodofBestParcelable = (FoodofBestParcelable)bundle.getParcelable(REVIEW_KEY);
 
         SQL_QUERY = "Insert into " +
-                RESTAURANT_TABLENAME +
+                RESTAURANT_TABLE_NAME +
                 " values(null, '" +
                 foodofBestParcelable.getRestaurantName().toString() +
                 "', '" +

@@ -1,6 +1,7 @@
 package com.example.jh.todayofbestfood;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(MainActivity.this);
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
 
         imageView = (ImageView)findViewById(R.id.imageView_logo);
         button_dataInput = (Button) findViewById(R.id.btnAdd);

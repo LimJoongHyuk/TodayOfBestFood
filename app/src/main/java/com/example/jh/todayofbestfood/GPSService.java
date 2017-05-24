@@ -39,7 +39,7 @@ public class GPSService {
     public void startLocationService(){
         // 위치 관리자 객체 참조
         LocationManager manager = (LocationManager) _activity.getSystemService(Context.LOCATION_SERVICE);
-
+        System.out.println("start 로컬 서비스 실행");
         // 위치 정보를 받을 리스너 생성
         GPSListener gpsListener = new GPSListener();
         long minTime = 10000;

@@ -120,7 +120,7 @@ public class DataInputActivity extends AppCompatActivity {
           _foodImgName = imgName;
           _foodTagName = rd.getText().toString();
           _foodPostscript = editText_postscript.getText().toString();
-            System.out.println("getDAta 실행");
+
     }
 
 

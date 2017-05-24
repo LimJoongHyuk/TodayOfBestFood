@@ -30,21 +30,7 @@ public class DatabaseManager {
         DatabaseHelper databaseHelper = new DatabaseHelper(_activity);
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
     }
-    //음식정 등록정보 가져오기
-    public void getRestaurantRegisterInfo(String name, String recommendmenu,
-                                           float grade, String latitude,
-                                           String longitude, String foodimg,
-                                           String foodtag){
 
-        _restaurantName = name;
-        _recommendMenu = recommendmenu;
-        _restaurantgrade = grade;
-        _latitude = latitude;
-        _longitude = longitude;
-        _foodImgName = foodimg;
-        _foodTagName = foodtag;
-
-    }
 
 
 

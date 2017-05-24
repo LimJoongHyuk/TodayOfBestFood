@@ -15,6 +15,7 @@ import android.widget.RatingBar;
 
 public class DataInputActivity extends AppCompatActivity {
 
+    //가게정보, 이미지, GPS(위도,경도) 가지고있음
 
 
 

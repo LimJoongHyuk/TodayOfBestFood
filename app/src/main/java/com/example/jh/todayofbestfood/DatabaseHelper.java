@@ -1,8 +1,10 @@
 package com.example.jh.todayofbestfood;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Bundle;
 
 import static java.sql.DriverManager.println;
 
@@ -14,6 +16,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static String DB_NAME = "TodayOfBestFood";
     private static int DB_VERSION = 1;
     private DatabaseQuery db_query;
+
+    public static final String REGISTER_KEY = "REGISTER";
+    public static final String REVIEW_KEY = "REVIEW";
 
 
     public DatabaseHelper(Context context) {
@@ -50,6 +55,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void createReviewTable(){
 
+    }
+
+    public void getReviewParcelable(Intent intent){
+        if(intent != null){
+            Bundle bundle = intent.getExtras();
+
+            ReviewParcelable reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
+
+            System.out.println("전달받은 데이터 : ");
+        }
     }
 
 }

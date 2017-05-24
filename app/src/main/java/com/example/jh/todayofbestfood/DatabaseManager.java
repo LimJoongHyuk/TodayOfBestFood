@@ -1,6 +1,8 @@
 package com.example.jh.todayofbestfood;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Parcelable;
 
@@ -20,6 +22,13 @@ public class DatabaseManager {
     private String _foodImgName;
     private String _foodTagName;
 
+
+    private Activity _activity;
+
+    public DatabaseManager(Activity activity) {
+        _activity = activity;
+    }
+
     //음식정 등록정보 가져오기
     public void getRestaurantRegisterInfo(String name, String recommendmenu,
                                            float grade, String latitude,
@@ -36,15 +45,6 @@ public class DatabaseManager {
 
     }
 
-
-    private String _reviewPostScript;
-    private float _reviewGrade;
-
-    //방문 후기 등록정보 가져오기
-    public void getVisitReviewInfo(String script, float grade){
-        _reviewPostScript = script;
-        _reviewGrade = grade;
-    }
 
 
 }

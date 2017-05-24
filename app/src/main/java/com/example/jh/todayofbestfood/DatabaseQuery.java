@@ -1,46 +1,53 @@
 package com.example.jh.todayofbestfood;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.Nullable;
+
 import java.util.ArrayList;
 
 /**
  * Created by smh on 2017-05-22.
  */
 
-public class DatabaseQuery {
+public class DatabaseQuery extends Activity{
     private static final String RESTAURANT_TABLE_NAME = "RestaurantInfo";
     private static final String REVIEW_TABLE_NAME = "RestaurantReview";
 
     private String SQL_QUERY;
 
-    private String _restaurant_name;
-    private String _restaurant_address;
-    private String _restaurant_recommend_food;
-    private float _restaurant_grade;//ratingBar 평점
-    private String _restaurant_latitude; // 위도
-    private String _restaurant_longitude; // 경도
-    private String _food_image_name; // 이미지 이름
-    private String _postscript;
+    public static final String REGISTER_KEY = "REGISTER";
+    public static final String REVIEW_KEY = "REVIEW";
 
+    public static final String REVIEWTABLENAME ="Review";
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-    private String _food_postscript;
-    private String _restaurant_add_grade;
+        Intent intent = getIntent();
 
-    //변수값 저장 생성자 오버로딩 2개
-
-
-    public DatabaseQuery() {
+        getReviewParcelable(intent);
 
     }
 
-    public DatabaseQuery(ArrayList<FoodOfBestInfo> data) {
-        this._restaurant_name = _restaurant_name;
-        this._restaurant_address = _restaurant_address;
-        this._restaurant_recommend_food = _restaurant_recommend_food;
-        this._restaurant_grade = _restaurant_grade;
-        this._restaurant_latitude = _restaurant_latitude;
-        this._restaurant_longitude = _restaurant_longitude;
-        this._food_image_name = _food_image_name;
-        this._postscript = _postscript;
+    private void getReviewParcelable(Intent intent){
+        if(intent != null){
+            Bundle bundle = intent.getExtras();
+
+            reviewTableInsert(bundle);
+        }
+    }
+
+    public String reviewTableInsert(Bundle bundle){
+
+        ReviewParcelable reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
+
+        SQL_QUERY = " Insert into " + REVIEWTABLENAME + " values(null, '" + reviewParcelable.getscript() + "' , " +
+                " " + reviewParcelable.getgrade() + " ; ";
+
+        return SQL_QUERY;
     }
 
     // 음식점 테이블 생성

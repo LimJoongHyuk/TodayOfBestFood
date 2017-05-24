@@ -1,5 +1,7 @@
 package com.example.jh.todayofbestfood;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -21,7 +23,9 @@ public class ReviewInputFragment extends Fragment {
     private RatingBar _inputGrade_RB;
     private Button _inputOperation_BT;
 
+    private Activity _activity;
 
+    public static final String KEY_REVIEWINPUT="REVIEW";
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,15 +40,18 @@ public class ReviewInputFragment extends Fragment {
     }
 
     public void inputOperationButtonClick(View view) {
-        DatabaseManager databaseManager = new DatabaseManager();
-
-//        databaseManager.getVisitReviewInfo(
-//                _inputReview_ET.getText().toString(),
-//                _inputGrade_RB.getStepSize());
 
         System.out.println("입력 리뷰" + _inputReview_ET.getText().toString());
 
         System.out.println("입력 평점" + String.valueOf(_inputGrade_RB.getRating()));
+
+        Intent intent = new Intent(_activity.getApplicationContext(),DatabaseQuery.class);
+
+        ReviewParcelable reviewParcelable = new ReviewParcelable(_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
+
+        intent.putExtra(KEY_REVIEWINPUT, reviewParcelable);
+
+        startActivityForResult(intent, 2222);
     }
 
 

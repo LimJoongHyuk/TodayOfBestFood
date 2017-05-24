@@ -2,6 +2,7 @@ package com.example.jh.todayofbestfood;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -43,9 +44,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void addButtonClick(View view) {
 
-        CameraActionService cameraActionService = new CameraActionService(this);
-        cameraActionService .imageToInput();
+        AlertDialog.Builder dig = new AlertDialog.Builder(MainActivity.this);
+        dig.setTitle("카메라");
+        dig.setMessage("카레라를 실행 하시겠습니까?");
+        dig.setPositiveButton("예", (dialog, which) -> {
+            CameraActionService cameraActionService = new CameraActionService(MainActivity.this);
+            cameraActionService .imageToInput();
+        });
+        dig.setNegativeButton("아니요", (dialog, which) -> {
+            Intent intent = new Intent(getApplicationContext(), DataInputActivity.class);
+            startActivity(intent);
+        });
 
+        dig.show();
     }
 
     private void searchButtonClick(View view) {

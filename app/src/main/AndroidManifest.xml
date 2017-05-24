@@ -31,7 +31,9 @@
         </activity>
         <activity android:name=".SelectActivity">
         </activity>
-        <activity android:name=".DataInputActivity"></activity>
+        <activity android:name=".DataInputActivity">
+
+        </activity>
 
         <activity android:name=".MainActivity">
             <intent-filter>

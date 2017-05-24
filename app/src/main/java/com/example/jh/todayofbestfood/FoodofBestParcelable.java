@@ -16,17 +16,20 @@ public class FoodofBestParcelable implements Parcelable {
     private String _longitude;
     private String _foodImgName;
     private String _foodTagName;
+    private String _foodPostscript;
 
-    public FoodofBestParcelable(String name, String menu, float grade,
+    public FoodofBestParcelable(String name, String menu, float grade,String postscript,
                                 String latitude, String longitude, String imgName,
                                 String tagname) {
         _restaurantName = name;
         _recommendMenu = menu;
         _restaurantgrade = grade;
+
         _latitude = latitude;
         _longitude = longitude;
         _foodImgName = imgName;
         _foodTagName = tagname;
+        _foodPostscript = postscript;
     }
 
     public FoodofBestParcelable(Parcel src){
@@ -37,6 +40,7 @@ public class FoodofBestParcelable implements Parcelable {
         _longitude = src.readString();
         _foodImgName = src.readString();
         _foodTagName = src.readString();
+        _foodPostscript = src.readString();
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator(){
@@ -64,5 +68,6 @@ public class FoodofBestParcelable implements Parcelable {
         dest.writeString(_longitude);
         dest.writeString(_foodImgName);
         dest.writeString(_foodTagName);
+        dest.writeString(_foodPostscript);
     }
 }

@@ -7,6 +7,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by jh on 2017-05-24.
  */
@@ -16,17 +18,20 @@ public class GPSService {
     Activity _activity;
     private Double latitude;
     private Double longitude;
+    private LatLng _latLng;
 
 
     public Double getLatitude() {
+        latitude = _latLng.latitude;
         return latitude;
     }
 
     public Double getLongitude() {
+        longitude = _latLng.longitude;
         return longitude;
     }
 
-
+    public LatLng getlatLng() { return _latLng;}
 
     public GPSService(Activity _activity) {
         this._activity = _activity;
@@ -59,8 +64,7 @@ public class GPSService {
             // 위치 확인이 안되는 경우에도 최근에 확인된 위치 정보 먼저 확인
             Location lastLocation = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (lastLocation != null) {
-                 latitude = lastLocation.getLatitude();
-                 longitude = lastLocation.getLongitude();
+                _latLng = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
             }
         } catch(SecurityException ex) {
             ex.printStackTrace();
@@ -72,8 +76,7 @@ public class GPSService {
 
         @Override
         public void onLocationChanged(Location location) {
-             latitude = location.getLatitude();
-             longitude = location.getLongitude();
+            _latLng = new LatLng(location.getLatitude(), location.getLongitude());
         }
 
         @Override

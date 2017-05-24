@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -80,74 +80,21 @@ public class SelectActivity extends AppCompatActivity {
         LocationManager manager =
                 (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         try {
-            long minTime = 10000;
-            float minDistance = 0;
-            manager.requestLocationUpdates(
-                    LocationManager.GPS_PROVIDER,
-                    minTime,
-                    minDistance,
-                    new android.location.LocationListener() {
-                        @Override
-                        public void onLocationChanged(Location location) {
-                            showCurrentLocation(location);
-                        }
+            GPSService gpsService = new GPSService(SelectActivity.this);
+            gpsService.startLocationService();
+            LatLng latLng = gpsService.getlatLng();
+            Toast.makeText(getApplicationContext(), latLng.toString(), Toast.LENGTH_LONG).show();
+            /*double test = latLng.latitude;
+            double test2 = latLng.longitude;*/
+            showCurrentLocation(latLng);
+        } catch (Exception e) {
 
-                        @Override
-                        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-                        }
-
-                        @Override
-                        public void onProviderEnabled(String provider) {
-
-                        }
-
-                        @Override
-                        public void onProviderDisabled(String provider) {
-
-                        }
-                    }
-            );
-
-            Location lastLocation = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (lastLocation != null) {
-                showCurrentLocation(lastLocation);
-            }
-
-            manager.requestLocationUpdates(
-                    LocationManager.NETWORK_PROVIDER,
-                    minTime,
-                    minDistance,
-                    new android.location.LocationListener() {
-                        @Override
-                        public void onLocationChanged(Location location) {
-                            showCurrentLocation(location);
-                        }
-
-                        @Override
-                        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-                        }
-
-                        @Override
-                        public void onProviderEnabled(String provider) {
-
-                        }
-
-                        @Override
-                        public void onProviderDisabled(String provider) {
-
-                        }
-                    }
-            );
-
-        } catch(SecurityException e) {
-            e.printStackTrace();
         }
+
+
     }
 
-    private void showCurrentLocation(Location location) {
-        LatLng curPoint = new LatLng(location.getLatitude(), location.getLongitude());
+    private void showCurrentLocation(LatLng curPoint) {
 
         _markerOptions = new MarkerOptions();
         _markerOptions.position(curPoint);

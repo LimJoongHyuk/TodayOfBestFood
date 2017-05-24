@@ -1,10 +1,7 @@
 package com.example.jh.todayofbestfood;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Parcelable;
 
 /**
  * Created by smh on 2017-05-23.
@@ -29,6 +26,10 @@ public class DatabaseManager {
         _activity = activity;
     }
 
+    public void createDb() {
+        DatabaseHelper databaseHelper = new DatabaseHelper(_activity);
+        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+    }
     //음식정 등록정보 가져오기
     public void getRestaurantRegisterInfo(String name, String recommendmenu,
                                            float grade, String latitude,

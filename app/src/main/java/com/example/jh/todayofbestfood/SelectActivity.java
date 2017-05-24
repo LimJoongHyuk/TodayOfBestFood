@@ -1,17 +1,14 @@
 package com.example.jh.todayofbestfood;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -77,21 +74,14 @@ public class SelectActivity extends AppCompatActivity {
     }
 
     private void requestMyLocation() {
-        LocationManager manager =
-                (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         try {
             GPSService gpsService = new GPSService(SelectActivity.this);
             gpsService.startLocationService();
             LatLng latLng = gpsService.getlatLng();
-            Toast.makeText(getApplicationContext(), latLng.toString(), Toast.LENGTH_LONG).show();
-            /*double test = latLng.latitude;
-            double test2 = latLng.longitude;*/
             showCurrentLocation(latLng);
         } catch (Exception e) {
 
         }
-
-
     }
 
     private void showCurrentLocation(LatLng curPoint) {

@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.io.File;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_IMAGE_CAPTURE = 101;
     private static final int REQUEST_DATA_INPUT = 102;
     private static final int REQUEST_DATA_SEARCH = 103;
+
+    private static final int REQUEST_GPS_SERVICE = 105;
 
     File file = null;
     private Button button_select;
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         button_select = (Button) findViewById(R.id.btnSearch);
 
         button_dataInput.setOnClickListener(this::addButtonClick);
-        button_select.setOnClickListener(this::searchButtonClick);
+        button_Search.setOnClickListener(this::searchButtonClick);
     }
 
     private void addButtonClick(View view) {

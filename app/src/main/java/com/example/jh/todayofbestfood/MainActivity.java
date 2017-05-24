@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addButtonClick(View view) {
-
         AlertDialog.Builder dig = new AlertDialog.Builder(MainActivity.this);
         dig.setTitle("카메라");
         dig.setMessage("카레라를 실행 하시겠습니까?");

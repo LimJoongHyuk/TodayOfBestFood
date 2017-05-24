@@ -18,7 +18,39 @@ public class FoodofBestParcelable implements Parcelable {
     private String _foodTagName;
     private String _foodPostscript;
 
-    public FoodofBestParcelable(String name, String menu, float grade,String postscript,
+    public String getRestaurantName() {
+        return _restaurantName;
+    }
+
+    public String getRecommendMenu() {
+        return _recommendMenu;
+    }
+
+    public float getRestaurantgrade() {
+        return _restaurantgrade;
+    }
+
+    public String getLatitude() {
+        return _latitude;
+    }
+
+    public String getLongitude() {
+        return _longitude;
+    }
+
+    public String getFoodImgName() {
+        return _foodImgName;
+    }
+
+    public String getFoodTagName() {
+        return _foodTagName;
+    }
+
+    public String getFoodPostscript() {
+        return _foodPostscript;
+    }
+
+    public FoodofBestParcelable(String name, String menu, float grade, String postscript,
                                 String latitude, String longitude, String imgName,
                                 String tagname) {
         _restaurantName = name;

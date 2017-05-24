@@ -3,10 +3,7 @@ package com.example.jh.todayofbestfood;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
-
-import java.util.ArrayList;
 
 /**
  * Created by smh on 2017-05-22.
@@ -21,7 +18,8 @@ public class DatabaseQuery extends Activity{
     public static final String REGISTER_KEY = "REGISTER";
     public static final String REVIEW_KEY = "REVIEW";
 
-    public static final String REVIEWTABLENAME ="Review";
+    public static final String REVIEW_TABLENAME ="Review";
+    public static final String RESTAURANT_TABLENAME ="Restaurant";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,15 +34,15 @@ public class DatabaseQuery extends Activity{
         if(intent != null){
             Bundle bundle = intent.getExtras();
 
-            reviewTableInsert(bundle);
+            reviewInsert(bundle);
         }
     }
 
-    public String reviewTableInsert(Bundle bundle){
+    public String reviewInsert(Bundle bundle){
 
         ReviewParcelable reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
 
-        SQL_QUERY = " Insert into " + REVIEWTABLENAME + " values(null, '" + reviewParcelable.getscript() + "' , " +
+        SQL_QUERY = "Insert into " + REVIEW_TABLENAME + " values(null, '" + reviewParcelable.getscript().toString() + "' , " +
                 " " + reviewParcelable.getgrade() + " ; ";
 
         return SQL_QUERY;
@@ -83,6 +81,39 @@ public class DatabaseQuery extends Activity{
         return SQL_QUERY;
     }
 
+
+    private void getRestaurantParcelable(Intent intent){
+        if(intent != null){
+            Bundle bundle = intent.getExtras();
+
+            RestaurantInsert(bundle);
+        }
+    }
+
+    public String RestaurantInsert(Bundle bundle){
+
+        FoodofBestParcelable foodofBestParcelable = (FoodofBestParcelable)bundle.getParcelable(REVIEW_KEY);
+
+        SQL_QUERY = "Insert into " +
+                RESTAURANT_TABLENAME +
+                " values(null, '" +
+                foodofBestParcelable.getRestaurantName().toString() +
+                "', '" +
+                foodofBestParcelable.getFoodTagName().toString() +
+                "', '" +
+                foodofBestParcelable.getRecommendMenu().toString() +
+                "', '" +
+                foodofBestParcelable.getRestaurantgrade() +
+                "', '" +
+                foodofBestParcelable.getLatitude().toString() +
+                "', '" +
+                foodofBestParcelable.getLongitude().toString() +
+                "', '" +
+                foodofBestParcelable.getFoodImgName().toString() +
+                "');";
+
+        return SQL_QUERY;
+    }
 
     //리뷰 레코드 등록
     public String onInsertReviewData(FoodOfBestInfo foodOfBestInfo){

@@ -39,13 +39,6 @@ public class DataInputActivity extends AppCompatActivity {
 
 
 
-        Button btn_dataInput = (Button)findViewById(R.id.button_input);
-        btn_dataInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
 
     }
 

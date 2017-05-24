@@ -8,9 +8,10 @@
     android:weightSum="5">
 
     <ImageView
+        android:id="@+id/imageView_logo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3"/>
+        android:layout_weight="3" />
 
     <Button
         android:layout_width="match_parent"
@@ -18,7 +19,7 @@
         android:layout_weight="1"
         android:text="맛집 등록"
         android:textSize="25dp"
-        android:id="@+id/btninput"/>
+        android:id="@+id/btnAdd"/>
 
     <Button
         android:layout_width="match_parent"

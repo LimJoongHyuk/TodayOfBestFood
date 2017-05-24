@@ -37,10 +37,10 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/imageView_food"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    app:srcCompat="@drawable/snorlax"/>
+                    app:srcCompat="@drawable/snorlax" />
 
                 <RatingBar
                     android:id="@+id/ratingBar"

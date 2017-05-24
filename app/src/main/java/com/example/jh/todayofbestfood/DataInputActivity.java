@@ -1,7 +1,9 @@
 package com.example.jh.todayofbestfood;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -34,6 +37,7 @@ public class DataInputActivity extends AppCompatActivity {
     RatingBar ratingBar;
     CameraActionService cameraActionService = new CameraActionService(this);
 
+    String imgPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +51,17 @@ public class DataInputActivity extends AppCompatActivity {
         rd = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
 
         Button btn_dataInput = (Button)findViewById(R.id.button_input);
-        btn_dataInput.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        imageView_goodfood.setOnClickListener(this::getAlbumphotoClick);
 
-            }
-        });
+        btn_dataInput.setOnClickListener(this::dataInputClick);
 
-        imageView_goodfood.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cameraActionService.getAlbumPhoto();
+    }
 
-            }
-        });
+    private void dataInputClick(View view) {
+    }
 
+    private void getAlbumphotoClick(View view) {
+        cameraActionService.getAlbumPhoto();
     }
 
 
@@ -69,8 +69,10 @@ public class DataInputActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == GETPHOTO_ACTIVITY) {
             try {
+                imgPath = getImageNameToUri(data.getData());
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                 imageView_goodfood.setImageBitmap(bitmap);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -78,7 +80,7 @@ public class DataInputActivity extends AppCompatActivity {
         }
     }
 
-    /*public String getImageNameToUri(Uri data)
+    public String getImageNameToUri(Uri data)
     {
         String[] proj = { MediaStore.Images.Media.DATA };
         Cursor cursor = managedQuery(data, proj, null, null, null);
@@ -89,6 +91,8 @@ public class DataInputActivity extends AppCompatActivity {
         String imgPath = cursor.getString(column_index);
         String imgName = imgPath.substring(imgPath.lastIndexOf("/")+1);
 
-        return imgName;
-    }*/
+        Toast.makeText(getApplicationContext(), imgPath, Toast.LENGTH_SHORT).show();
+
+        return imgPath;
+    }
 }

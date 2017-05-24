@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.io.File;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         button_select = (Button) findViewById(R.id.btnSearch);
 
         button_dataInput.setOnClickListener(this::addButtonClick);
-        button_Search.setOnClickListener(this::searchButtonClick);
+        button_select.setOnClickListener(this::searchButtonClick);
     }
 
     private void addButtonClick(View view) {

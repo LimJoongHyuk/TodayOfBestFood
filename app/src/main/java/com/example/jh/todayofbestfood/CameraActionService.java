@@ -9,7 +9,8 @@ import android.provider.MediaStore;
  */
 
 public class CameraActionService {
-    private static final int DATAINPUT_ACTIVITY = 101;
+    private static final int TAKEPICTURE_ACTIVITY = 101;
+    private static final int GETPHOTO_ACTIVITY = 104;
 
 
     Activity _activity;
@@ -20,9 +21,15 @@ public class CameraActionService {
 
     public void imageToInput(){
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        _activity.startActivityForResult(intent,DATAINPUT_ACTIVITY);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI.toString());
+        _activity.startActivityForResult(intent,TAKEPICTURE_ACTIVITY);
     }
 
+    public void getAlbumPhoto() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+        _activity.startActivityForResult(intent, GETPHOTO_ACTIVITY);
+    }
 
 
 }

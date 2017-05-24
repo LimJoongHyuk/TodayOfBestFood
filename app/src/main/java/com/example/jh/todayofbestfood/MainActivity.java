@@ -2,14 +2,12 @@ package com.example.jh.todayofbestfood;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.File;
-import java.io.IOException;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -38,12 +36,11 @@ public class MainActivity extends AppCompatActivity {
         button_select = (Button) findViewById(R.id.btnSearch);
 
         button_dataInput.setOnClickListener(this::addButtonClick);
-
-
-        button_Search.setOnClickListener(this::searchButtonClick);
+        button_select.setOnClickListener(this::searchButtonClick);
     }
 
     private void addButtonClick(View view) {
+
         CameraActionService cameraActionService = new CameraActionService(this);
         cameraActionService .imageToInput();
 
@@ -66,15 +63,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
-
-    private File createFile() throws IOException {
-        String imageFileName = "test.jpg";
-        File storageDir = Environment.getExternalStorageDirectory();
-        File curFile = new File(storageDir,imageFileName);
-        return curFile;
-    }
-
-
-
 
 }//end MainActivity

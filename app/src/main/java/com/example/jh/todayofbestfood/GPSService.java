@@ -1,5 +1,4 @@
 package com.example.jh.todayofbestfood;
-
 import android.app.Activity;
 import android.content.Context;
 import android.location.Location;

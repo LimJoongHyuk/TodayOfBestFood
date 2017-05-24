@@ -1,8 +1,8 @@
 package com.example.jh.todayofbestfood;
 
-import org.junit.Test;
+import android.app.Activity;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -11,7 +11,9 @@ import static org.junit.Assert.*;
  */
 public class ExampleUnitTest {
     @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+    public void GPS_테스트코드() throws Exception {
+        Activity activity = null;
+        GPSService gpsService = new GPSService(activity);
+        System.out.println(gpsService.getLatitude().toString());
     }
 }

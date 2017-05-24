@@ -3,6 +3,7 @@ package com.example.jh.todayofbestfood;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
 import android.support.annotation.Nullable;
 
 /**
@@ -18,27 +19,27 @@ public class DatabaseQuery extends Activity{
     public static final String REGISTER_KEY = "REGISTER";
     public static final String REVIEW_KEY = "REVIEW";
 
+
+    FoodofBestParcelable foodofBestParcelable;
+    ReviewParcelable reviewParcelable;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
 
-        getReviewParcelable(intent);
+        restaurantInsert(bundle);
+        System.out.println("반환된결과:"+ SQL_QUERY);
+        setResult(RESULT_OK);
+        finish();
 
-    }
 
-    private void getReviewParcelable(Intent intent){
-        if(intent != null){
-            Bundle bundle = intent.getExtras();
-
-            reviewInsert(bundle);
-        }
     }
 
     public String reviewInsert(Bundle bundle){
 
-        ReviewParcelable reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
+        reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
 
         SQL_QUERY = "Insert into " + REVIEW_TABLE_NAME + " values(null, '" + reviewParcelable.getscript().toString() + "' , " +
                 " " + reviewParcelable.getgrade() + " ; ";
@@ -71,47 +72,35 @@ public class DatabaseQuery extends Activity{
     }
 
 
-    //음식점 레코드 등록
-    public String onInsertRestaurantData(){
-        return SQL_QUERY;
-    }
 
 
-    private void getRestaurantParcelable(Intent intent){
-        if(intent != null){
-            Bundle bundle = intent.getExtras();
+    public String restaurantInsert(Bundle bundle){
 
-            RestaurantInsert(bundle);
-        }
-    }
-
-    public String RestaurantInsert(Bundle bundle){
-
-        FoodofBestParcelable foodofBestParcelable = (FoodofBestParcelable)bundle.getParcelable(REVIEW_KEY);
+        foodofBestParcelable = (FoodofBestParcelable)bundle.getParcelable(REGISTER_KEY);
 
         SQL_QUERY = "Insert into " +
                 RESTAURANT_TABLE_NAME +
                 " values(null, '" +
-                foodofBestParcelable.getRestaurantName().toString() +
+                foodofBestParcelable.get_restaurantName().toString() +
                 "', '" +
-                foodofBestParcelable.getFoodTagName().toString() +
+                foodofBestParcelable.get_foodTagName().toString() +
                 "', '" +
-                foodofBestParcelable.getRecommendMenu().toString() +
+                foodofBestParcelable.get_recommendMenu().toString() +
                 "', '" +
-                foodofBestParcelable.getRestaurantgrade() +
+                foodofBestParcelable.get_restaurantgrade() +
                 "', '" +
-                foodofBestParcelable.getLatitude().toString() +
+                foodofBestParcelable.get_latitude().toString() +
                 "', '" +
-                foodofBestParcelable.getLongitude().toString() +
+                foodofBestParcelable.get_longitude().toString() +
                 "', '" +
-                foodofBestParcelable.getFoodImgName().toString() +
+                foodofBestParcelable.get_foodImgName().toString() +
                 "');";
 
         return SQL_QUERY;
     }
 
     //리뷰 레코드 등록
-    public String onInsertReviewData(FoodOfBestInfo foodOfBestInfo){
+    public String onInsertReviewData(Bundle bundle){
         return SQL_QUERY;
     }
 
@@ -121,7 +110,7 @@ public class DatabaseQuery extends Activity{
     }
 
     //음식점 삭제를 위한 delete 구문
-    public String onDeleteData(FoodOfBestInfo foodOfBestInfo){
+    public String onDeleteData(Bundle bundle){
 
         return SQL_QUERY;
     }
@@ -132,18 +121,20 @@ public class DatabaseQuery extends Activity{
     }
 
     //음식점 상세정보 보기위함
-    public String onMakerClickedSelectData(FoodOfBestInfo foodOfBestInfo){
+    public String onMakerClickedSelectData(Bundle bundle){
+        foodofBestParcelable = (FoodofBestParcelable)bundle.getParcelable(REGISTER_KEY);
         SQL_QUERY = "select restaurant_name , restaurant_recommend_food , restaurant_grade , food_image_name " +
                 "from " + RESTAURANT_TABLE_NAME + " " +
-                "where restaurant_name = '"+foodOfBestInfo.get_restaurant_name().toString()+"'";
+                "where restaurant_name = '"+foodofBestParcelable.get_restaurantName().toString()+"'";
         return SQL_QUERY;
     }
 
     //음식점 리뷰 전체보기
-    public String onReviewClickedSelectData(ReviewInfo reviewInfo){
+    public String onReviewClickedSelectData(Bundle bundle){
+        reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
         SQL_QUERY = "select food_postscript,restaurant_add_grade " +
                 "from "+ REVIEW_TABLE_NAME +" " +
-                "where restaurant_name = '" + reviewInfo.get_restaurant_name().toString()+"'";
+                "where restaurant_name = '" + reviewParcelable./*외래키*/toString()+"'";
         return SQL_QUERY;
     }
 

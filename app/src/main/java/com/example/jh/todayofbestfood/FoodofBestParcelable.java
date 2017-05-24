@@ -18,41 +18,43 @@ public class FoodofBestParcelable implements Parcelable {
     private String _foodTagName;
     private String _foodPostscript;
 
-    public String getRestaurantName() {
+    public String get_restaurantName() {
         return _restaurantName;
     }
 
-    public String getRecommendMenu() {
+    public String get_recommendMenu() {
         return _recommendMenu;
     }
 
-    public float getRestaurantgrade() {
+    public float get_restaurantgrade() {
         return _restaurantgrade;
     }
 
-    public String getLatitude() {
+    public String get_latitude() {
         return _latitude;
     }
 
-    public String getLongitude() {
+    public String get_longitude() {
         return _longitude;
     }
 
-    public String getFoodImgName() {
+    public String get_foodImgName() {
         return _foodImgName;
     }
 
-    public String getFoodTagName() {
+    public String get_foodTagName() {
         return _foodTagName;
     }
 
-    public String getFoodPostscript() {
+    public String get_foodPostscript() {
         return _foodPostscript;
     }
 
     public FoodofBestParcelable(String name, String menu, float grade, String postscript,
                                 String latitude, String longitude, String imgName,
                                 String tagname) {
+
+        System.out.println("FoodofBestParcelable 생성");
         _restaurantName = name;
         _recommendMenu = menu;
         _restaurantgrade = grade;

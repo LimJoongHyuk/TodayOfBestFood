@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         DatabaseManager databaseManager = new DatabaseManager(this);
         databaseManager.createDb();
 
+        System.out.println("메인");
         imageView = (ImageView)findViewById(R.id.imageView_logo);
         button_dataInput = (Button) findViewById(R.id.btnAdd);
         button_Search = (Button) findViewById(R.id.btnSearch);
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addButtonClick(View view) {
+
         AlertDialog.Builder dig = new AlertDialog.Builder(MainActivity.this);
         dig.setTitle("카메라");
         dig.setMessage("카레라를 실행 하시겠습니까?");
@@ -55,7 +57,8 @@ public class MainActivity extends AppCompatActivity {
         });
         dig.setNegativeButton("아니요", (dialog, which) -> {
             Intent intent = new Intent(getApplicationContext(), DataInputActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,REQUEST_DATA_INPUT);
+
         });
 
         dig.show();

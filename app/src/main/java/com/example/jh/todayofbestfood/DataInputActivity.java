@@ -27,6 +27,7 @@ public class DataInputActivity extends AppCompatActivity {
     public static final String REGISTER_KEY = "REGISTER";
 
     private static final int GETPHOTO_ACTIVITY = 104;
+    private static final int TO_PARCELABLE = 106;
 
     ImageView imageView_goodfood;
 
@@ -40,13 +41,12 @@ public class DataInputActivity extends AppCompatActivity {
     RatingBar ratingBar;
 
     //서비스 클래스 사용
-    CameraActionService cameraActionService = new CameraActionService(this);
-    GPSService gpsService = new GPSService(this);
+
 
     String imgPath;
     String imgName;
-
-
+    CameraActionService cameraActionService;
+    GPSService gpsService;
     private String _restaurantName;
     private String _recommendMenu;
     private float _restaurantgrade;
@@ -60,6 +60,7 @@ public class DataInputActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datainput);
+
         imageView_goodfood = (ImageView)findViewById(R.id.imageView_goodfood);
         editText_restaurantName = (EditText)findViewById(R.id.editText_restaurantName);
         editText_restaurant_recommend_food = (EditText)findViewById(R.id.editText_restaurant_recommend_food);
@@ -67,7 +68,10 @@ public class DataInputActivity extends AppCompatActivity {
         rg = (RadioGroup) findViewById(R.id.radioGroup);
         rd = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
         ratingBar = (RatingBar)findViewById(R.id.ratingBar_total_grade);
+        cameraActionService = new CameraActionService(this);    //카메라 서비스 생성
 
+
+        gpsService = new GPSService(this);                       //gps 서비스 생성
         //위도 경도 GPS 가져오기
         gpsService.startLocationService();
 
@@ -91,12 +95,20 @@ public class DataInputActivity extends AppCompatActivity {
 
     //데이터 담기
     private void sendData(){
+
         Intent intent = new Intent(this,DatabaseQuery.class);
         getData();
         FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(_restaurantName,_recommendMenu,_restaurantgrade,_foodPostscript,
                                                                                 _latitude,_longitude,_foodImgName,_foodTagName);
+
         intent.putExtra(REGISTER_KEY,foodofBestParcelable);
-        startActivityForResult(intent,RESULT_OK);
+        startActivityForResult(intent,TO_PARCELABLE);
+
+
+
+
+
+
     }
     private void getData(){
 
@@ -108,7 +120,7 @@ public class DataInputActivity extends AppCompatActivity {
           _foodImgName = imgName;
           _foodTagName = rd.getText().toString();
           _foodPostscript = editText_postscript.getText().toString();
-
+            System.out.println("getDAta 실행");
     }
 
 
@@ -124,6 +136,10 @@ public class DataInputActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+        }
+        if(requestCode == TO_PARCELABLE){
+            setResult(RESULT_OK);
+            finish();
         }
     }
 

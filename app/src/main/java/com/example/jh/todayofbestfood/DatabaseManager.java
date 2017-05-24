@@ -13,7 +13,7 @@ import android.os.Parcelable;
     //input에서 입력 음식점 정보를 받고
     //
 public class DatabaseManager {
-
+    //
     private String _restaurantName;
     private String _recommendMenu;
     private float _restaurantgrade;

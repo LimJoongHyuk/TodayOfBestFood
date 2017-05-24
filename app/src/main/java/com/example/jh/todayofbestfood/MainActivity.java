@@ -2,10 +2,10 @@ package com.example.jh.todayofbestfood;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -29,19 +29,24 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button_dataInput = (Button) findViewById(R.id.btninput);
+        imageView = (ImageView)findViewById(R.id.imageView_logo);
+        button_dataInput = (Button) findViewById(R.id.btnAdd);
         button_Search = (Button) findViewById(R.id.btnSearch);
-        imageView = (ImageView)findViewById(R.id.imageView);
+
 
         button_dataInput = (Button) findViewById(R.id.btnAdd);
         button_select = (Button) findViewById(R.id.btnSearch);
 
         button_dataInput.setOnClickListener(this::addButtonClick);
+
+
         button_Search.setOnClickListener(this::searchButtonClick);
     }
 
     private void addButtonClick(View view) {
-            //
+        CameraActionService cameraActionService = new CameraActionService(this);
+        cameraActionService .imageToInput();
+
     }
 
     private void searchButtonClick(View view) {
@@ -52,23 +57,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+        if(requestCode == REQUEST_IMAGE_CAPTURE  && resultCode == RESULT_OK){
 
-        if(requestCode == REQUEST_IMAGE_CAPTURE /* && resultCode == RESULT_OK*/){
 
-            Bitmap temp = (Bitmap)data.getExtras().get("data");
-            imageView.setImageBitmap(temp);
-            /*
-            BitmapFactory.Options options = new BitmapFactory.Options();
-            options.inSampleSize = 8;
-            Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath(),options);
-            imageView.setImageBitmap(bitmap);
-*/
-            Intent intent = new Intent(getApplicationContext(), DataInputActivity.class);
+            Intent intent = new Intent(this, DataInputActivity.class);
+
             startActivityForResult(intent, REQUEST_DATA_INPUT);
+
         }
     }
 
-    private File createFile() throws IOException{
+    private File createFile() throws IOException {
         String imageFileName = "test.jpg";
         File storageDir = Environment.getExternalStorageDirectory();
         File curFile = new File(storageDir,imageFileName);

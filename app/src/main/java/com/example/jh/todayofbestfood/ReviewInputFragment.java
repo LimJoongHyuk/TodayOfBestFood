@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
-import android.widget.Toast;
 
 /**
  * Created by pdg on 2017-05-22.
@@ -45,7 +44,7 @@ public class ReviewInputFragment extends Fragment {
 
         System.out.println("입력 평점" + String.valueOf(_inputGrade_RB.getRating()));
 
-        Intent intent = new Intent(_activity.getApplicationContext(),DatabaseQuery.class);
+        Intent intent = new Intent(_activity.getApplicationContext(),DatabaseQueryService.class);
 
         ReviewParcelable reviewParcelable = new ReviewParcelable(_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
 

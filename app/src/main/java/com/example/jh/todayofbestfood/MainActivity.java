@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import java.io.File;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_GPS_SERVICE = 105;
 
-    File file = null;
     private Button button_select;
     private Button button_dataInput;
     ImageView imageView;
@@ -32,8 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        DatabaseManager databaseManager = new DatabaseManager(this);
-        databaseManager.createDb();
+
 
         imageView = (ImageView)findViewById(R.id.imageView_logo);
         button_dataInput = (Button) findViewById(R.id.btnAdd);

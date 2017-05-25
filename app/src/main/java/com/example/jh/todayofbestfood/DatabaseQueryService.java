@@ -2,17 +2,18 @@ package com.example.jh.todayofbestfood;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
 import android.support.annotation.Nullable;
 
 /**
  * Created by smh on 2017-05-22.
  */
 
-public class DatabaseQuery extends Activity{
+public class DatabaseQueryService extends Activity{
     private static final String RESTAURANT_TABLE_NAME = "RestaurantInfo";
     private static final String REVIEW_TABLE_NAME = "RestaurantReview";
+
 
     private String SQL_QUERY;
 
@@ -20,23 +21,44 @@ public class DatabaseQuery extends Activity{
     public static final String REVIEW_KEY = "REVIEW";
 
 
+    SQLiteDatabase db;
+    DatabaseHelper databaseHelper;
     FoodofBestParcelable foodofBestParcelable;
     ReviewParcelable reviewParcelable;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        databaseHelper = new DatabaseHelper(this);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-        restaurantInsert(bundle);
-        System.out.println("반환된결과:"+ SQL_QUERY);
-        setResult(RESULT_OK);
-        finish();
+
+
+
 
 
     }
+    public void query_judgment(String key, Bundle bundle){
+        switch (key){
+            case REGISTER_KEY:
+                restaurantInsert(bundle);
+                break;
+        }
+    }
 
+    public void excuteSqlQuery(){
+        try {
+            db = databaseHelper.getWritableDatabase();
+            db.execSQL(SQL_QUERY);
+            System.out.println("쿼리실행 완료");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("반환된결과:"+ SQL_QUERY);
+        setResult(RESULT_OK);
+        finish();
+    }
+    //음식점 리뷰남기기
     public String reviewInsert(Bundle bundle){
 
         reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
@@ -73,7 +95,7 @@ public class DatabaseQuery extends Activity{
 
 
 
-
+ //음식점 데이터 삽입
     public String restaurantInsert(Bundle bundle){
 
         foodofBestParcelable = (FoodofBestParcelable)bundle.getParcelable(REGISTER_KEY);
@@ -99,10 +121,6 @@ public class DatabaseQuery extends Activity{
         return SQL_QUERY;
     }
 
-    //리뷰 레코드 등록
-    public String onInsertReviewData(Bundle bundle){
-        return SQL_QUERY;
-    }
 
     //평점 수정하기 위한 업데이트
     public String onUpdateData(){

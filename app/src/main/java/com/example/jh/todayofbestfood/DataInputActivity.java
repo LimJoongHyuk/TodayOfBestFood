@@ -95,13 +95,16 @@ public class DataInputActivity extends AppCompatActivity {
     }
 
 
-    //데이터 담기
+    //데이터 DB실행
     private void sendData(){
 
-        Intent intent = new Intent(this,DatabaseQuery.class);
+        Intent intent = new Intent(this,DatabaseQueryService.class);
         getData();
-        FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(_restaurantName,_recommendMenu,_restaurantgrade,_foodPostscript,
+     /*   FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(_restaurantName,_recommendMenu,_restaurantgrade,_foodPostscript,
                                                                                 _latitude,_longitude,_foodImgName,_foodTagName);
+*/
+        FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable("1","2",1,"3","4","5","6","7");
+
 
         intent.putExtra(REGISTER_KEY,foodofBestParcelable);
         startActivityForResult(intent,TO_PARCELABLE);
@@ -140,6 +143,7 @@ public class DataInputActivity extends AppCompatActivity {
 
         }
         if(requestCode == TO_PARCELABLE){
+
             setResult(RESULT_OK);
             finish();
         }

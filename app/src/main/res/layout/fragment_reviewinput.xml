@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-    android:id="@+id/reviewTableLayout">
+              android:orientation="vertical"
+    android:id="@+id/reviewLayout">
 
-        <TableRow
-            android:weightSum="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <EditText
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:hint="한줄 평 입력"
-                android:id="@+id/inputReview_ET"/>
+                android:id="@+id/inputReview_ET"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"/>
 
-        </TableRow>
+        </LinearLayout>
 
-        <TableRow
-            android:weightSum="3">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right">
 
             <RatingBar
                 android:id="@+id/inputGrade_RB"
-                android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:max="10"
+                android:isIndicator="false"/>
             <Button
                 android:id="@+id/inputOperation_BT"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="후기 등록"
-                />
-        </TableRow>
-</TableLayout>
+                android:text="등록"/>
+        </LinearLayout>
+</LinearLayout>

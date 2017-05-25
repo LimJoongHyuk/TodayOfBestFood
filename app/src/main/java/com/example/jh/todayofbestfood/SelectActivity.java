@@ -34,6 +34,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
     private static final String PATH = "/storage/emulated/0/DCIM/Camera/";
     private static final String TAG = "SelectActivity";
 
+
     TextView txtRestaurantName, txtRestaurantTag, txtRecommendFood;
     RatingBar ratingBar;
     ImageView imgSelect;
@@ -43,10 +44,13 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
 
     SupportMapFragment mapFragment;
     GoogleMap map;
+
     private MarkerOptions _markerOptions;
     static final LatLng SEOUL = new LatLng(37.56, 126.97);
     private ImageView imageView_food;
     private ArrayList<MarkerItem> _markerItems;
+
+    private int curRestaurantId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -207,6 +211,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
                 txtRecommendFood.setText("추천 메뉴 : " + markerItem.getRestaurantRecommendFood());
                 ratingBar.setRating(markerItem.getRestaurantGrade());
                 setImage(markerItem.getFoodImageName());
+                curRestaurantId = markerItem.getRestaurantId();
             }
         }
         LatLng latLng = new LatLng(marker.getPosition().latitude, marker.getPosition().longitude);

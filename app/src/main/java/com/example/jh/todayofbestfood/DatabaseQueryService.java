@@ -203,11 +203,32 @@ public class DatabaseQueryService extends Activity{
         finish();
     }
 
+    private ArrayList<ReviewParcelable> _restaurantReviewTableArrayList = new ArrayList<>();
 
-    public void getRestaurantReviewTableDataBundle(){
-        SQL_QUERY = " Select * from " + REVIEW_TABLE_NAME;
+    public void getRestaurantReviewTableDataBundle(int id){
+        //select 에 * 를 생성자 위치랑 맞춰준다.
+        System.out.println("실행된 엑티비티"+self_check);
+        db = databaseHelper.getWritableDatabase();
+        SQL_QUERY = "select * from " + REVIEW_TABLE_NAME + "where restaurant_id = " + id + ";";
+
+        System.out.println("쿼리 :" + SQL_QUERY);
+        Cursor cursor = db.rawQuery(SQL_QUERY, null);
+        int recordCount = cursor.getCount();
+        System.out.println("쿼리 카운터 : " + recordCount);
+        _restaurantReviewTableArrayList.clear();
 
 
+        for(int i = 0; i < recordCount ; i++){
+            cursor.moveToNext();
+            ReviewParcelable reviewParcelable  = new ReviewParcelable(
+                    cursor.getInt(1),
+                    cursor.getString(2),
+                    cursor.getFloat(3));
+            _restaurantReviewTableArrayList.add(reviewParcelable);
         }
-
+        cursor.close();
+        Intent intent = new Intent();
+        intent.putExtra("select",_restaurantReviewTableArrayList);
+        setResult(RESULT_OK,intent);
+        finish();
     }

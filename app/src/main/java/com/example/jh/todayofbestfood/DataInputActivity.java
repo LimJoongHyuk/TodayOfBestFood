@@ -71,9 +71,11 @@ public class DataInputActivity extends AppCompatActivity {
         cameraActionService = new CameraActionService(this);    //카메라 서비스 생성
 
 
-        gpsService = new GPSService(this);                       //gps 서비스 생성
+        gpsService = new GPSService(DataInputActivity.this);                       //gps 서비스 생성
         //위도 경도 GPS 가져오기
         gpsService.startLocationService();
+        String test = gpsService.getLatitude().toString();
+        Toast.makeText(getApplicationContext(), gpsService.getLatitude().toString(), Toast.LENGTH_LONG).show();
 
         Button btn_dataInput = (Button)findViewById(R.id.button_input);
         imageView_goodfood.setOnClickListener(this::getAlbumphotoClick);

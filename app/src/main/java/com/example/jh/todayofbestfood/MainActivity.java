@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         DatabaseManager databaseManager = new DatabaseManager(this);
         databaseManager.createDb();
 
-        System.out.println("메인");
         imageView = (ImageView)findViewById(R.id.imageView_logo);
         button_dataInput = (Button) findViewById(R.id.btnAdd);
         button_Search = (Button) findViewById(R.id.btnSearch);

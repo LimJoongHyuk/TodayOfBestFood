@@ -11,16 +11,10 @@ import android.database.sqlite.SQLiteDatabase;
     //
 public class DatabaseManager {
     //
-    private String _restaurantName;
-    private String _recommendMenu;
-    private float _restaurantgrade;
-    private String _latitude;
-    private String _longitude;
-    private String _foodImgName;
-    private String _foodTagName;
 
 
     private Activity _activity;
+    private SQLiteDatabase _db;
 
     public DatabaseManager(Activity activity) {
         _activity = activity;
@@ -28,10 +22,19 @@ public class DatabaseManager {
 
     public void createDb() {
         DatabaseHelper databaseHelper = new DatabaseHelper(_activity);
-        SQLiteDatabase db = databaseHelper.getWritableDatabase();
+        _db = databaseHelper.getWritableDatabase();
     }
 
+    public void insertRestaurantData() {
+        _db.execSQL(getSqlQuery());
+    }
 
+    public void insertReviewData() {
+        _db.execSQL(getSqlQuery());
+    }
 
-
+    public String getSqlQuery() {
+        String query = "";
+        return query;
+    }
 }

@@ -50,7 +50,7 @@ public class DatabaseQueryService extends Activity {
                 restaurantInsert(bundle);
                 excuteSqlQuery();
                 break;
-            case "ReviewInputFragment":
+            case "ReviewActivityInsert":
                 reviewInsert(bundle);
                 excuteSqlQuery();
                 break;

@@ -9,21 +9,31 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import static com.example.jh.todayofbestfood.ReviewInputFragment.KEY_REVIEWINPUT;
 
 /**
  * Created by pdg on 2017-05-22.
  */
 
 public class ReviewActivity extends AppCompatActivity {
-    private static final String SELF_KEY = "SELFKEY";
+    public static final String SELF_KEY = "SELFKEY";
+    String isName = "ReviewActivityInsert";
     private static final int DATABASE_SERVICE_REQUEST = 109;
 
     private RecyclerView _recyclerView;
-    private int _id;
+    private int res_id;
+
+    private EditText _inputReview_ET;
+    private RatingBar _inputGrade_RB;
+    private Button _inputOperation_BT;
 
     TextView txtReview;
     RatingBar ratingbar;
@@ -35,12 +45,12 @@ public class ReviewActivity extends AppCompatActivity {
 
         Intent intent_received = getIntent();
         if(intent_received != null) {
-            _id = intent_received.getExtras().getInt("res_id");
+            res_id = intent_received.getExtras().getInt("res_id");
         }
 
         Intent intent = new Intent(this,DatabaseQueryService.class);
         intent.putExtra(SELF_KEY,"ReviewActivity");
-        intent.putExtra("res_id", _id);
+        intent.putExtra("res_id", res_id);
         startActivityForResult(intent,DATABASE_SERVICE_REQUEST);
 
         //fragment
@@ -54,10 +64,13 @@ public class ReviewActivity extends AppCompatActivity {
 
         _recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
+        _inputReview_ET = (EditText)findViewById(R.id.inputReview_ET);
+        _inputGrade_RB = (RatingBar)findViewById(R.id.inputGrade_RB);
+        _inputOperation_BT =(Button)findViewById(R.id.inputOperation_BT);
 
+        _inputOperation_BT.setOnClickListener(this::inputOperationButtonClick);
 
-
-
+        System.out.println("요청된 아이디 : " + res_id);
     }//end onCreate
 
     private ArrayList<ReviewParcelable> loadData(){
@@ -75,7 +88,6 @@ public class ReviewActivity extends AppCompatActivity {
         _recyclerView.setLayoutManager(layoutManager);
         _recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
-
 
     // create an action bar button
     @Override
@@ -106,8 +118,23 @@ public class ReviewActivity extends AppCompatActivity {
             for(ReviewParcelable reviewParcelable : reviews) {
                 System.out.println(reviewParcelable.getscript() + reviewParcelable.getgrade());
             }
-            showReview();
         }
+        showReview();
+    }
+
+    public void inputOperationButtonClick(View view) {
+
+        System.out.println("입력 리뷰" + _inputReview_ET.getText().toString());
+
+        System.out.println("입력 평점" + String.valueOf(_inputGrade_RB.getRating()));
+
+        Intent intent = new Intent(view.getContext(),DatabaseQueryService.class);
+
+        ReviewParcelable reviewParcelable = new ReviewParcelable(res_id,_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
+
+        intent.putExtra(KEY_REVIEWINPUT, reviewParcelable);
+        intent.putExtra(SELF_KEY,isName);
+        startActivityForResult(intent, 2222);
     }
 }
 

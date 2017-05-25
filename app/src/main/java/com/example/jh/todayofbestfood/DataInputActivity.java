@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,6 +50,7 @@ public class DataInputActivity extends AppCompatActivity {
 
     String imgPath;
     String imgName;
+    String tagName;
     CameraActionService cameraActionService;
     GPSService gpsService;
     private String _restaurantName;
@@ -74,8 +76,30 @@ public class DataInputActivity extends AppCompatActivity {
         ratingBar = (RatingBar)findViewById(R.id.ratingBar_total_grade);
         cameraActionService = new CameraActionService(this);    //카메라 서비스 생성
 
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                                          @Override
+                                          public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                                              switch(checkedId) {
+                                                  case R.id.radioButton_chinesefood:
+                                                      tagName = "중식";
+                                                      break;
+                                                  case R.id.radioButton_koreanfood:
+                                                      tagName = "한식";
+                                                      break;
+                                                  case R.id.radioButton_japansefood:
+                                                      tagName = "일식";
+                                                      break;
+                                                  case R.id.radioButton_fastfood:
+                                                      tagName = "패스트푸드";
+                                                      break;
+                                                  default:
+                                                      tagName = "한식";
+                                                      break;
+                                              }
+                                          }
+                                      });
 
-        gpsService = new GPSService(DataInputActivity.this);                       //gps 서비스 생성
+                gpsService = new GPSService(DataInputActivity.this);                       //gps 서비스 생성
         //위도 경도 GPS 가져오기
         gpsService.startLocationService();
 
@@ -86,10 +110,10 @@ public class DataInputActivity extends AppCompatActivity {
 
     }
 
+
     // 등록버튼 클릭
     private void dataInputClick(View view) {
         sendData();
-
     }
     //이미지 가져오기
     private void getAlbumphotoClick(View view) {
@@ -103,7 +127,7 @@ public class DataInputActivity extends AppCompatActivity {
         Intent intent = new Intent(this,DatabaseQueryService.class);
         getData();
         FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(_restaurantName,_recommendMenu,_restaurantgrade,_foodPostscript,
-                                                                                _latitude,_longitude,_foodImgName,_foodTagName);
+                                                                                _latitude,_longitude,_foodImgName,tagName);
 
      //테스트코드
     //    FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable("1","2",1,"3","4","5","6","7");

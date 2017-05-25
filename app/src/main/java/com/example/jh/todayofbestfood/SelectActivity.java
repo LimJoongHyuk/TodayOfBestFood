@@ -77,7 +77,6 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
                 map = googleMap;
 
                 setCustomMarkerView();
-                getMarkerItems();
 
                 _markerOptions = new MarkerOptions();
                 _markerOptions.position(SEOUL);
@@ -171,6 +170,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
             _markerItems = (ArrayList<MarkerItem>) data.getSerializableExtra("select");
             for(MarkerItem markerItem : _markerItems) {
                 addMarker(markerItem);
+                System.out.println("요청된 데이터 : " + markerItem.getRestaurantId() + " " + markerItem.getRestaurantName() + " " + markerItem.getFoodTag());
             }
 
         }
@@ -186,7 +186,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
         _markerOptions.title(restaurantName);
         _markerOptions.position(position);
 
-        switch (food_tag) {
+        switch (food_tag.toString()) {
             case "중식" :
                 markerImage.setImageResource(R.drawable.chinesefood_icon_off);
                 break;

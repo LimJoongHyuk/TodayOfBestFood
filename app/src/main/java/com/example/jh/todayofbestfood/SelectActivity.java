@@ -34,7 +34,9 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
     private static final String PATH = "/storage/emulated/0/DCIM/Camera/";
     private static final String TAG = "SelectActivity";
 
-
+    private static final int DATABASE_SERVICE_REQUEST = 106;
+    public static final String SELF_KEY = "SELFKEY";
+    String isName = "SelectActivity";
     TextView txtRestaurantName, txtRestaurantTag, txtRecommendFood;
     RatingBar ratingBar;
     ImageView imgSelect;
@@ -144,16 +146,28 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
     }
 
     private void getMarkerItems() {
-        _markerItems = new ArrayList<>();
+     //   _markerItems = new ArrayList<>();
 
         //데이터 받아오기
+        Intent intent = new Intent(this,DatabaseQueryService.class);
+        intent.putExtra(SELF_KEY,isName);
+        startActivityForResult(intent,DATABASE_SERVICE_REQUEST);
 
-        _markerItems.add(new MarkerItem(1, "삼국지", "중식", "볶음밥", (float)4.5, 37.542425, 126.841514, "dd"));
+
+ /*       _markerItems.add(new MarkerItem(1, "삼국지", "중식", "볶음밥", (float)4.5, 37.542425, 126.841514, "dd"));
         _markerItems.add(new MarkerItem(2, "신선설농탕", "한식", "설렁탕", (float) 3.5, 37.540722, 126.838335, "dd"));
         _markerItems.add(new MarkerItem(3, "SUBWAY", "패스트푸드", "샌드위치", (float) 1.5, 37.540948, 126.840623, "dd"));
-
+*/
         for(MarkerItem markerItem : _markerItems) {
             addMarker(markerItem);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == DATABASE_SERVICE_REQUEST){
+            Intent get_intent = getIntent();
+            _markerItems = (ArrayList<MarkerItem>) get_intent.getSerializableExtra("select");
         }
     }
 

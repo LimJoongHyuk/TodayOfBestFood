@@ -25,6 +25,9 @@ public class ReviewInputFragment extends Fragment {
     private Activity _activity;
 
     public static final String KEY_REVIEWINPUT="REVIEW";
+    public static final String SELF_KEY = "SELFKEY";
+    String isName = "ReviewInputFragment";
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,12 +47,12 @@ public class ReviewInputFragment extends Fragment {
 
         System.out.println("입력 평점" + String.valueOf(_inputGrade_RB.getRating()));
 
-        Intent intent = new Intent(_activity.getApplicationContext(),DatabaseQueryService.class);
+        Intent intent = new Intent(view.getContext(),DatabaseQueryService.class);
 
-        //ReviewParcelable reviewParcelable = new ReviewParcelable(_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
+        ReviewParcelable reviewParcelable = new ReviewParcelable("1",_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
 
-        //intent.putExtra(KEY_REVIEWINPUT, reviewParcelable);
-
+        intent.putExtra(KEY_REVIEWINPUT, reviewParcelable);
+        intent.putExtra(SELF_KEY,isName);
         startActivityForResult(intent, 2222);
     }
 

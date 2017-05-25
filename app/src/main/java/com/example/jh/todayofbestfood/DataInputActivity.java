@@ -27,6 +27,8 @@ import java.io.IOException;
 public class DataInputActivity extends AppCompatActivity {
 
     public static final String REGISTER_KEY = "REGISTER";
+    public static final String SELF_KEY = "SELFKEY";
+    String isName = "DataInputActivity";
 
     private static final int GETPHOTO_ACTIVITY = 104;
     private static final int TO_PARCELABLE = 106;
@@ -100,13 +102,15 @@ public class DataInputActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this,DatabaseQueryService.class);
         getData();
-     /*   FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(_restaurantName,_recommendMenu,_restaurantgrade,_foodPostscript,
+        FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(_restaurantName,_recommendMenu,_restaurantgrade,_foodPostscript,
                                                                                 _latitude,_longitude,_foodImgName,_foodTagName);
-*/
-        FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable("1","2",1,"3","4","5","6","7");
 
+     //테스트코드
+    //    FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable("1","2",1,"3","4","5","6","7");
 
+        //자신을 알리는 키도 추가
         intent.putExtra(REGISTER_KEY,foodofBestParcelable);
+        intent.putExtra(SELF_KEY,isName);
         startActivityForResult(intent,TO_PARCELABLE);
 
 

@@ -19,10 +19,11 @@ public class DatabaseQueryService extends Activity{
 
 
     private String SQL_QUERY;
+    String self_check;
 
     public static final String REGISTER_KEY = "REGISTER";
     public static final String REVIEW_KEY = "REVIEW";
-
+    public static final String SELF_KEY = "SELFKEY";
 
     SQLiteDatabase db;
     DatabaseHelper databaseHelper;
@@ -34,17 +35,24 @@ public class DatabaseQueryService extends Activity{
         databaseHelper = new DatabaseHelper(this);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-
-
-
+        self_check = bundle.getString(SELF_KEY).toString();
+        query_judgment(self_check,bundle);
 
 
 
     }
     public void query_judgment(String key, Bundle bundle){
         switch (key){
-            case REGISTER_KEY:
+            case "DataInputActivity":
                 restaurantInsert(bundle);
+                excuteSqlQuery();
+                break;
+            case "ReviewInputFragment":
+                reviewInsert(bundle);
+                excuteSqlQuery();
+                break;
+            case "SelectActivity":
+                getRestaurantInfoTableDataBundle();
                 break;
         }
     }
@@ -53,7 +61,7 @@ public class DatabaseQueryService extends Activity{
         try {
             db = databaseHelper.getWritableDatabase();
             db.execSQL(SQL_QUERY);
-            System.out.println("쿼리실행 완료");
+            System.out.println("실행된 엑티비티"+self_check);
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -66,8 +74,8 @@ public class DatabaseQueryService extends Activity{
 
         reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
 
-        SQL_QUERY = "Insert into " + REVIEW_TABLE_NAME + " values(null, '" + reviewParcelable.getscript().toString() + "' , " +
-                " " + reviewParcelable.getgrade() + " ; ";
+        SQL_QUERY = "Insert into " + REVIEW_TABLE_NAME + " values(null,1, '" + reviewParcelable.getscript().toString() + "' , " +
+                " " + reviewParcelable.getgrade() + " ); ";
 
         return SQL_QUERY;
     }
@@ -191,9 +199,10 @@ public class DatabaseQueryService extends Activity{
         Cursor cursor = db.rawQuery(SQL_QUERY, null);
 
         _restaurantInfoTableArrayList.clear();
+        int recordCount = cursor.getCount();
 
-
-        while(cursor.moveToNext()){
+        for(int i = 0; i < recordCount ; i++){
+            cursor.moveToNext();
             FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(
                     cursor.getString(0),
                     cursor.getString(1),
@@ -204,60 +213,20 @@ public class DatabaseQueryService extends Activity{
                     cursor.getString(6),
                     cursor.getString(7));
             _restaurantInfoTableArrayList.add(foodofBestParcelable);
-
         }
-    }//end getRestaurantInfoTableDataBundle
+        Intent intent = new Intent();
+        intent.putExtra("select",_restaurantInfoTableArrayList);
+        System.out.println("실행된 엑티비티"+self_check);
+        System.out.println("쿼리 :" + SQL_QUERY);
+        setResult(RESULT_OK,intent);
+        finish();
+    }
 
-
-//    //리뷰 테이블 생성
-//    public String onCreateTable_review(){
-//        SQL_QUERY = "create table if not exists " + REVIEW_TABLE_NAME +
-//                "(id integer PRIMARY KEY autoincrement, "+
-//                "restaurant_id integer REFERENCES " + RESTAURANT_TABLE_NAME + "(restaurant_id) on delete cascade, "+
-//                "food_postscript text, "+
-//                "restaurant_add_grade text);";
-//        return SQL_QUERY;
-//    }
-
-
-    //RestaurantReview 테이블 묶음 가져오는 메소드
-
-    private ArrayList<String> _restaurantReviewTablePrimaryKeyArrayList;
-    private ArrayList<String> _restaurantReviewTableKeyofReferenceArrayList;
-    private ArrayList<String> _restaurantReviewTableFoodpostScriptArrayList;
-    private ArrayList<Double> _restaurantReviewTableRestaurantGradeArrayList;
 
     public void getRestaurantReviewTableDataBundle(){
         SQL_QUERY = " Select * from " + REVIEW_TABLE_NAME;
 
-        Cursor cursor = db.rawQuery(SQL_QUERY, null);
-
-        _restaurantReviewTablePrimaryKeyArrayList.clear();
-        _restaurantReviewTableKeyofReferenceArrayList.clear();
-        _restaurantReviewTableFoodpostScriptArrayList.clear();
-        _restaurantReviewTableRestaurantGradeArrayList.clear();
-
-        while(cursor.moveToNext()){
-            _restaurantReviewTablePrimaryKeyArrayList.add(cursor.getString(0));
-            _restaurantReviewTableKeyofReferenceArrayList.add(cursor.getString(1));
-            _restaurantReviewTableFoodpostScriptArrayList.add(cursor.getString(2));
-            _restaurantReviewTableRestaurantGradeArrayList.add(cursor.getDouble(3));
 
         }
 
     }
-
-    //
-
-    //음식점 리뷰 전체보기
-    public String onReviewClickedSelectData(Bundle bundle){
-        reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
-        SQL_QUERY = "select food_postscript,restaurant_add_grade " +
-                "from "+ REVIEW_TABLE_NAME +" " +
-                "where restaurant_name = '" + reviewParcelable./*외래키*/toString()+"'";
-        return SQL_QUERY;
-    }
-
-
-
-}

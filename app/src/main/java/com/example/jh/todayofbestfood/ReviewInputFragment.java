@@ -2,16 +2,15 @@ package com.example.jh.todayofbestfood;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
-import android.widget.Toast;
 
 /**
  * Created by pdg on 2017-05-22.
@@ -47,9 +46,9 @@ public class ReviewInputFragment extends Fragment {
 
         Intent intent = new Intent(_activity.getApplicationContext(),DatabaseQuery.class);
 
-        ReviewParcelable reviewParcelable = new ReviewParcelable(_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
+//        ReviewParcelable reviewParcelable = new ReviewParcelable(_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
 
-        intent.putExtra(KEY_REVIEWINPUT, reviewParcelable);
+//        intent.putExtra(KEY_REVIEWINPUT, reviewParcelable);
 
         startActivityForResult(intent, 2222);
     }

@@ -74,7 +74,6 @@ public class DataInputActivity extends AppCompatActivity {
         gpsService = new GPSService(DataInputActivity.this);                       //gps 서비스 생성
         //위도 경도 GPS 가져오기
         gpsService.startLocationService();
-        String test = gpsService.getLatitude().toString();
         Toast.makeText(getApplicationContext(), gpsService.getLatitude().toString(), Toast.LENGTH_LONG).show();
 
         Button btn_dataInput = (Button)findViewById(R.id.button_input);

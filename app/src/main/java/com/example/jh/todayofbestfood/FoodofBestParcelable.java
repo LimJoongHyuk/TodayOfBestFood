@@ -9,6 +9,7 @@ import android.os.Parcelable;
 
 public class FoodofBestParcelable implements Parcelable {
 
+    private String _tableid;
     private String _restaurantName;
     private String _recommendMenu;
     private float _restaurantgrade;

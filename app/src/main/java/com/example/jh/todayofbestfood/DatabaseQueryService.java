@@ -83,13 +83,13 @@ public class DatabaseQueryService extends Activity{
     public String onCreateTable_restaurant(){
         SQL_QUERY = "create table if not exists "+ RESTAURANT_TABLE_NAME +
                 " (restaurant_id integer PRIMARY KEY autoincrement, " +
-                "restaurant_name text, " +
-                "restaurant_address text, " +
-                "restaurant_recommend_food text, " +
-                "restaurant_grade text, " +
-                "restaurant_latitude text, " +
-                "restaurant_longitude text, " +
-                "food_image_name text);" ;
+                " restaurant_name text, " +
+                " restaurant_foodtag text, " +
+                " restaurant_recommend_food text, " +
+                " restaurant_grade text, " +
+                " restaurant_latitude text, " +
+                " restaurant_longitude text, " +
+                " food_image_name text ); " ;
         return SQL_QUERY;
     }
 
@@ -158,43 +158,53 @@ public class DatabaseQueryService extends Activity{
     }
 
 
+
+//    // 음식점 테이블 생성
+//    public String onCreateTable_restaurant(){
+//        SQL_QUERY = "create table if not exists "+ RESTAURANT_TABLE_NAME +
+//                " (restaurant_id integer PRIMARY KEY autoincrement, " +
+//                "restaurant_name text, " +
+//                "restaurant_address text, " +
+//                "restaurant_recommend_food text, " +
+//                "restaurant_grade text, " +
+//                "restaurant_latitude text, " +
+//                "restaurant_longitude text, " +
+//                "food_image_name text);" ;
+//        return SQL_QUERY;
+//    }
     //RestaurantInfo 테이블 묶음 가져오는 메소드
-    private ArrayList<String> _restaurantInfoTablePrimaryKeyArrayList;
-    private ArrayList<String> _restaurantInfoTableRestaurantNameArrayList;
-    private ArrayList<String> _restaurantInfoTableRecommendMenuArrayList;
-    private ArrayList<Double> _restaurantInfoTableRestaurantGradeArrayList;
-    private ArrayList<String> _restaurantInfoTableRestaurantLatitude;
-    private ArrayList<String> _restaurantInfoTableRestaurantLongitude;
-    private ArrayList<String> _restaurantInfoTableFoodImgName;
-    private ArrayList<String> _restaurantInfoTableTagName;
-    private ArrayList<String> _restaurantInfoTablepostScript;
+    private ArrayList<FoodofBestParcelable> _restaurantInfoTableArrayList = new ArrayList<>();
+
 
     public void getRestaurantInfoTableDataBundle(){
-
-        SQL_QUERY = " Select * from " + RESTAURANT_TABLE_NAME;
+            //select 에 * 를 생성자 위치랑 맞춰준다.
+        SQL_QUERY = " Select restaurant_id, " +
+                    " restaurant_name, " +
+                    " restaurant_foodtag, "+
+                    " restaurant_recommend_food, " +
+                    " restaurant_grade, " +
+                    " restaurant_Latitude, " +
+                    " restaurant_Longitude, "+
+                    " restaurant_imgname "+
+                    " from " + RESTAURANT_TABLE_NAME;
 
         Cursor cursor = db.rawQuery(SQL_QUERY, null);
 
-        _restaurantInfoTablePrimaryKeyArrayList.clear();
-        _restaurantInfoTableRestaurantNameArrayList.clear();
-        _restaurantInfoTableRecommendMenuArrayList.clear();
-        _restaurantInfoTableRestaurantGradeArrayList.clear();
-        _restaurantInfoTableRestaurantLatitude.clear();
-        _restaurantInfoTableRestaurantLongitude.clear();
-        _restaurantInfoTableFoodImgName.clear();
-        _restaurantInfoTableTagName.clear();
-        _restaurantInfoTablepostScript.clear();
+        _restaurantInfoTableArrayList.clear();
+
 
         while(cursor.moveToNext()){
-            _restaurantInfoTablePrimaryKeyArrayList.add(cursor.getString(0));
-            _restaurantInfoTableRestaurantNameArrayList.add(cursor.getString(1));
-            _restaurantInfoTableRecommendMenuArrayList.add(cursor.getString(2));
-            _restaurantInfoTableRestaurantGradeArrayList.add(cursor.getDouble(3));
-            _restaurantInfoTableRestaurantLatitude.add(cursor.getString(4));
-            _restaurantInfoTableRestaurantLongitude.add(cursor.getString(5));
-            _restaurantInfoTableFoodImgName.add(cursor.getString(6));
-            _restaurantInfoTableTagName.add(cursor.getString(7));
-            _restaurantInfoTablepostScript.add(cursor.getString(8));
+            FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(
+                    cursor.getString(0),
+                    cursor.getString(1),
+                    cursor.getFloat(2),
+                    cursor.getString(3),
+                    cursor.getString(4),
+                    cursor.getString(5),
+                    cursor.getString(6),
+                    cursor.getString(7));
+            _restaurantInfoTableArrayList.add(foodofBestParcelable);
+
         }
     }//end getRestaurantInfoTableDataBundle
 
@@ -232,6 +242,7 @@ public class DatabaseQueryService extends Activity{
             _restaurantReviewTableKeyofReferenceArrayList.add(cursor.getString(1));
             _restaurantReviewTableFoodpostScriptArrayList.add(cursor.getString(2));
             _restaurantReviewTableRestaurantGradeArrayList.add(cursor.getDouble(3));
+
         }
 
     }

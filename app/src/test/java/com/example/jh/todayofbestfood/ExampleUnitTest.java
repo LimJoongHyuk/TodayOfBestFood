@@ -12,8 +12,8 @@ import org.junit.Test;
 public class ExampleUnitTest {
     @Test
     public void GPS_테스트코드() throws Exception {
-        Activity activity = null;
-        GPSService gpsService = new GPSService(activity);
-        System.out.println(gpsService.getLatitude().toString());
+        FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(null,null,0,"",null,null,null,null);
+        System.out.println(foodofBestParcelable.get_foodImgName());
+
     }
 }

@@ -2,9 +2,12 @@ package com.example.jh.todayofbestfood;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+
+import java.util.ArrayList;
 
 /**
  * Created by smh on 2017-05-22.
@@ -68,6 +71,13 @@ public class DatabaseQueryService extends Activity{
 
         return SQL_QUERY;
     }
+
+
+    //DB에 저장 된 inputdata를 ArrayList에 저장 후
+    public void getDataInput(){
+
+    }
+
 
     // 음식점 테이블 생성
     public String onCreateTable_restaurant(){
@@ -147,6 +157,87 @@ public class DatabaseQueryService extends Activity{
         return SQL_QUERY;
     }
 
+
+    //RestaurantInfo 테이블 묶음 가져오는 메소드
+    private ArrayList<String> _restaurantInfoTablePrimaryKeyArrayList;
+    private ArrayList<String> _restaurantInfoTableRestaurantNameArrayList;
+    private ArrayList<String> _restaurantInfoTableRecommendMenuArrayList;
+    private ArrayList<Double> _restaurantInfoTableRestaurantGradeArrayList;
+    private ArrayList<String> _restaurantInfoTableRestaurantLatitude;
+    private ArrayList<String> _restaurantInfoTableRestaurantLongitude;
+    private ArrayList<String> _restaurantInfoTableFoodImgName;
+    private ArrayList<String> _restaurantInfoTableTagName;
+    private ArrayList<String> _restaurantInfoTablepostScript;
+
+    public void getRestaurantInfoTableDataBundle(){
+
+        SQL_QUERY = " Select * from " + RESTAURANT_TABLE_NAME;
+
+        Cursor cursor = db.rawQuery(SQL_QUERY, null);
+
+        _restaurantInfoTablePrimaryKeyArrayList.clear();
+        _restaurantInfoTableRestaurantNameArrayList.clear();
+        _restaurantInfoTableRecommendMenuArrayList.clear();
+        _restaurantInfoTableRestaurantGradeArrayList.clear();
+        _restaurantInfoTableRestaurantLatitude.clear();
+        _restaurantInfoTableRestaurantLongitude.clear();
+        _restaurantInfoTableFoodImgName.clear();
+        _restaurantInfoTableTagName.clear();
+        _restaurantInfoTablepostScript.clear();
+
+        while(cursor.moveToNext()){
+            _restaurantInfoTablePrimaryKeyArrayList.add(cursor.getString(0));
+            _restaurantInfoTableRestaurantNameArrayList.add(cursor.getString(1));
+            _restaurantInfoTableRecommendMenuArrayList.add(cursor.getString(2));
+            _restaurantInfoTableRestaurantGradeArrayList.add(cursor.getDouble(3));
+            _restaurantInfoTableRestaurantLatitude.add(cursor.getString(4));
+            _restaurantInfoTableRestaurantLongitude.add(cursor.getString(5));
+            _restaurantInfoTableFoodImgName.add(cursor.getString(6));
+            _restaurantInfoTableTagName.add(cursor.getString(7));
+            _restaurantInfoTablepostScript.add(cursor.getString(8));
+        }
+    }//end getRestaurantInfoTableDataBundle
+
+
+//    //리뷰 테이블 생성
+//    public String onCreateTable_review(){
+//        SQL_QUERY = "create table if not exists " + REVIEW_TABLE_NAME +
+//                "(id integer PRIMARY KEY autoincrement, "+
+//                "restaurant_id integer REFERENCES " + RESTAURANT_TABLE_NAME + "(restaurant_id) on delete cascade, "+
+//                "food_postscript text, "+
+//                "restaurant_add_grade text);";
+//        return SQL_QUERY;
+//    }
+
+
+    //RestaurantReview 테이블 묶음 가져오는 메소드
+
+    private ArrayList<String> _restaurantReviewTablePrimaryKeyArrayList;
+    private ArrayList<String> _restaurantReviewTableKeyofReferenceArrayList;
+    private ArrayList<String> _restaurantReviewTableFoodpostScriptArrayList;
+    private ArrayList<Double> _restaurantReviewTableRestaurantGradeArrayList;
+
+    public void getRestaurantReviewTableDataBundle(){
+        SQL_QUERY = " Select * from " + REVIEW_TABLE_NAME;
+
+        Cursor cursor = db.rawQuery(SQL_QUERY, null);
+
+        _restaurantReviewTablePrimaryKeyArrayList.clear();
+        _restaurantReviewTableKeyofReferenceArrayList.clear();
+        _restaurantReviewTableFoodpostScriptArrayList.clear();
+        _restaurantReviewTableRestaurantGradeArrayList.clear();
+
+        while(cursor.moveToNext()){
+            _restaurantReviewTablePrimaryKeyArrayList.add(cursor.getString(0));
+            _restaurantReviewTableKeyofReferenceArrayList.add(cursor.getString(1));
+            _restaurantReviewTableFoodpostScriptArrayList.add(cursor.getString(2));
+            _restaurantReviewTableRestaurantGradeArrayList.add(cursor.getDouble(3));
+        }
+
+    }
+
+    //
+
     //음식점 리뷰 전체보기
     public String onReviewClickedSelectData(Bundle bundle){
         reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
@@ -155,6 +246,7 @@ public class DatabaseQueryService extends Activity{
                 "where restaurant_name = '" + reviewParcelable./*외래키*/toString()+"'";
         return SQL_QUERY;
     }
+
 
 
 }

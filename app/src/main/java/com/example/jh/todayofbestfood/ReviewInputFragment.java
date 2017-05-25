@@ -46,9 +46,9 @@ public class ReviewInputFragment extends Fragment {
 
         Intent intent = new Intent(_activity.getApplicationContext(),DatabaseQueryService.class);
 
-        ReviewParcelable reviewParcelable = new ReviewParcelable(_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
+        //ReviewParcelable reviewParcelable = new ReviewParcelable(_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
 
-        intent.putExtra(KEY_REVIEWINPUT, reviewParcelable);
+        //intent.putExtra(KEY_REVIEWINPUT, reviewParcelable);
 
         startActivityForResult(intent, 2222);
     }

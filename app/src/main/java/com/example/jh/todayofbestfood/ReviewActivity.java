@@ -54,15 +54,7 @@ public class ReviewActivity extends AppCompatActivity {
 
         _recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
-        ArrayList<ReviewParcelable> reviewDatas = loadData();
-        //adapter와 foodofbestinfo 연결
-        ReviewOutputAdapter adapter = new ReviewOutputAdapter(reviewDatas);
-        //recyclerview에 adapter 연결
-        _recyclerView.setAdapter(adapter);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
-        _recyclerView.setLayoutManager(layoutManager);
-        _recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
 
@@ -72,6 +64,17 @@ public class ReviewActivity extends AppCompatActivity {
         return reviews;
     }
 
+    private void showReview() {
+        ArrayList<ReviewParcelable> reviewDatas = loadData();
+        //adapter와 foodofbestinfo 연결
+        ReviewOutputAdapter adapter = new ReviewOutputAdapter(reviewDatas);
+        //recyclerview에 adapter 연결
+        _recyclerView.setAdapter(adapter);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        _recyclerView.setLayoutManager(layoutManager);
+        _recyclerView.setItemAnimator(new DefaultItemAnimator());
+    }
 
 
     // create an action bar button
@@ -101,8 +104,9 @@ public class ReviewActivity extends AppCompatActivity {
 
             reviews = (ArrayList<ReviewParcelable>) data.getSerializableExtra("select");
             for(ReviewParcelable reviewParcelable : reviews) {
-                System.out.println(reviewParcelable.getscript());
+                System.out.println(reviewParcelable.getscript() + reviewParcelable.getgrade());
             }
+            showReview();
         }
     }
 }

@@ -100,6 +100,7 @@ public class SelectActivity extends AppCompatActivity {
     }
 
     private void setImage() {
+        //
         try {
             Bitmap bitmap = BitmapFactory.decodeFile(TESTPATH);
             imageView_food.setImageBitmap(bitmap);

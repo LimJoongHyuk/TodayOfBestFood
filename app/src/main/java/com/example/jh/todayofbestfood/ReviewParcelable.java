@@ -8,12 +8,12 @@ import android.os.Parcelable;
  */
 
 public class ReviewParcelable implements Parcelable {
-    private String _choiceRestaurantName;
+    private int _choiceRestaurantId;
     private String _script;
     private float _grade;
 
-    public String getChoiceRestaurantName() {
-        return _choiceRestaurantName;
+    public int getChoiceRestaurantId() {
+        return _choiceRestaurantId;
     }
 
     public float getgrade() {
@@ -24,14 +24,14 @@ public class ReviewParcelable implements Parcelable {
         return _script;
     }
 
-    public ReviewParcelable(String choiceRestaurantName, String script, float grade) {
-        _choiceRestaurantName = choiceRestaurantName;
+    public ReviewParcelable(int choiceRestaurantId, String script, float grade) {
+        _choiceRestaurantId = choiceRestaurantId;
         _script = script;
         _grade = grade;
     }
 
     public ReviewParcelable(Parcel src) {
-        _choiceRestaurantName = src.readString();
+        _choiceRestaurantId = src.readInt();
         _script = src.readString();
         _grade = src.readFloat();
     }
@@ -54,7 +54,7 @@ public class ReviewParcelable implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(_choiceRestaurantName);
+        dest.writeInt(_choiceRestaurantId);
         dest.writeString(_script);
         dest.writeFloat(_grade);
     }

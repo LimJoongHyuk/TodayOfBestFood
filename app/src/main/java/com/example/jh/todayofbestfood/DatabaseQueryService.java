@@ -158,7 +158,7 @@ public class DatabaseQueryService extends Activity{
 
 
     //RestaurantInfo 테이블 묶음 가져오는 메소드
-    private ArrayList<FoodofBestParcelable> _restaurantInfoTableArrayList = new ArrayList<>();
+    private ArrayList<MarkerItem> _restaurantInfoTableArrayList = new ArrayList<>();
 
 
     public void getRestaurantInfoTableDataBundle(){
@@ -179,28 +179,26 @@ public class DatabaseQueryService extends Activity{
         System.out.println("쿼리 :" + SQL_QUERY);
         Cursor cursor = db.rawQuery(SQL_QUERY, null);
         int recordCount = cursor.getCount();
-
+        System.out.println("쿼리 카운터 : " + recordCount);
         _restaurantInfoTableArrayList.clear();
 
 
         for(int i = 0; i < recordCount ; i++){
             cursor.moveToNext();
-            FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(
-                    cursor.getString(0),
+            MarkerItem markerItem = new MarkerItem(
+                    cursor.getInt(0),
                     cursor.getString(1),
-                    cursor.getFloat(2),
+                    cursor.getString(2),
                     cursor.getString(3),
-                    cursor.getString(4),
-                    cursor.getString(5),
-                    cursor.getString(6),
+                    cursor.getFloat(4),
+                    Double.parseDouble(cursor.getString(5).toString()),
+                    Double.parseDouble(cursor.getString(6).toString()),
                     cursor.getString(7));
-            _restaurantInfoTableArrayList.add(foodofBestParcelable);
+            _restaurantInfoTableArrayList.add(markerItem);
         }
         cursor.close();
         Intent intent = new Intent();
         intent.putExtra("select",_restaurantInfoTableArrayList);
-
-
         setResult(RESULT_OK,intent);
         finish();
     }

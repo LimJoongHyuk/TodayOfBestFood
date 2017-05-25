@@ -35,6 +35,8 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
     private static final String TAG = "SelectActivity";
 
     private static final int DATABASE_SERVICE_REQUEST = 106;
+    private static final int REVIEW_ACTIVIEY = 107;
+
     public static final String SELF_KEY = "SELFKEY";
     String isName = "SelectActivity";
     TextView txtRestaurantName, txtRestaurantTag, txtRecommendFood;
@@ -106,7 +108,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
 
     private void reviewButtonClick(View view) {
         Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,REVIEW_ACTIVIEY);
     }
 
     private void locationButtonClick(View view) {
@@ -164,11 +166,12 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == DATABASE_SERVICE_REQUEST){
-            Intent get_intent = getIntent();
-            _markerItems = (ArrayList<MarkerItem>) get_intent.getSerializableExtra("select");
+
+            _markerItems = (ArrayList<MarkerItem>) data.getSerializableExtra("select");
             for(MarkerItem markerItem : _markerItems) {
                 addMarker(markerItem);
             }
+
         }
     }
 

@@ -1,10 +1,12 @@
 package com.example.jh.todayofbestfood;
 
+import java.io.Serializable;
+
 /**
  * Created by smh on 2017-05-25.
  */
 
-public class MarkerItem {
+public class MarkerItem implements Serializable {
     private int restaurantId;
     private String restaurantName;
     private String foodTag;

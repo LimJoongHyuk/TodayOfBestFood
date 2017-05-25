@@ -1,10 +1,13 @@
 package com.example.jh.todayofbestfood;
+
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -13,11 +16,13 @@ import com.google.android.gms.maps.model.LatLng;
  */
 
 public class GPSService {
+    private static final int REQUEST_GPS_SERVICE = 105;
 
     Activity _activity;
     private Double latitude;
     private Double longitude;
     private LatLng _latLng;
+    private LocationManager _locationManager;
 
 
     public Double getLatitude() {
@@ -34,11 +39,12 @@ public class GPSService {
 
     public GPSService(Activity _activity) {
         this._activity = _activity;
+        _locationManager = (LocationManager) _activity.getSystemService(Context.LOCATION_SERVICE);
     }
 
     public void startLocationService(){
         // 위치 관리자 객체 참조
-        LocationManager manager = (LocationManager) _activity.getSystemService(Context.LOCATION_SERVICE);
+
         System.out.println("start 로컬 서비스 실행");
         // 위치 정보를 받을 리스너 생성
         GPSListener gpsListener = new GPSListener();
@@ -47,21 +53,21 @@ public class GPSService {
 
         try {
             // GPS를 이용한 위치 요청
-            manager.requestLocationUpdates(
+            _locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
                     minTime,
                     minDistance,
                     gpsListener);
 
             // 네트워크를 이용한 위치 요청
-            manager.requestLocationUpdates(
+            _locationManager.requestLocationUpdates(
                     LocationManager.NETWORK_PROVIDER,
                     minTime,
                     minDistance,
                     gpsListener);
 
             // 위치 확인이 안되는 경우에도 최근에 확인된 위치 정보 먼저 확인
-            Location lastLocation = manager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            Location lastLocation = _locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (lastLocation != null) {
                 _latLng = new LatLng(lastLocation.getLatitude(), lastLocation.getLongitude());
             }
@@ -94,5 +100,14 @@ public class GPSService {
         }
     }
 
+    public boolean isGpsCheck() {
+        if(!_locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) return false;
+        else return true;
+    }
 
+    public void turnOnGps() {
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        _activity.startActivityForResult(intent, REQUEST_GPS_SERVICE);
+    }
 }

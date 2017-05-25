@@ -120,7 +120,7 @@ public class DatabaseQueryService extends Activity{
 
         SQL_QUERY = "Insert into " +
                 RESTAURANT_TABLE_NAME +
-                " values(null, '" +
+                " values(, '" +
                 foodofBestParcelable.get_restaurantName().toString() +
                 "', '" +
                 foodofBestParcelable.get_foodTagName().toString() +
@@ -156,37 +156,17 @@ public class DatabaseQueryService extends Activity{
         return SQL_QUERY;
     }
 
-    //음식점 상세정보 보기위함
-    public String onMakerClickedSelectData(Bundle bundle){
-        foodofBestParcelable = (FoodofBestParcelable)bundle.getParcelable(REGISTER_KEY);
-        SQL_QUERY = "select restaurant_name , restaurant_recommend_food , restaurant_grade , food_image_name " +
-                "from " + RESTAURANT_TABLE_NAME + " " +
-                "where restaurant_name = '"+foodofBestParcelable.get_restaurantName().toString()+"'";
-        return SQL_QUERY;
-    }
 
-
-
-//    // 음식점 테이블 생성
-//    public String onCreateTable_restaurant(){
-//        SQL_QUERY = "create table if not exists "+ RESTAURANT_TABLE_NAME +
-//                " (restaurant_id integer PRIMARY KEY autoincrement, " +
-//                "restaurant_name text, " +
-//                "restaurant_address text, " +
-//                "restaurant_recommend_food text, " +
-//                "restaurant_grade text, " +
-//                "restaurant_latitude text, " +
-//                "restaurant_longitude text, " +
-//                "food_image_name text);" ;
-//        return SQL_QUERY;
-//    }
     //RestaurantInfo 테이블 묶음 가져오는 메소드
     private ArrayList<FoodofBestParcelable> _restaurantInfoTableArrayList = new ArrayList<>();
 
 
     public void getRestaurantInfoTableDataBundle(){
             //select 에 * 를 생성자 위치랑 맞춰준다.
-        SQL_QUERY = " Select restaurant_id, " +
+        System.out.println("실행된 엑티비티"+self_check);
+        db = databaseHelper.getWritableDatabase();
+        SQL_QUERY = "select * from " + RESTAURANT_TABLE_NAME;
+        /*    SQL_QUERY = " Select restaurant_id, " +
                     " restaurant_name, " +
                     " restaurant_foodtag, "+
                     " restaurant_recommend_food, " +
@@ -195,11 +175,13 @@ public class DatabaseQueryService extends Activity{
                     " restaurant_Longitude, "+
                     " restaurant_imgname "+
                     " from " + RESTAURANT_TABLE_NAME;
-
+      */
+        System.out.println("쿼리 :" + SQL_QUERY);
         Cursor cursor = db.rawQuery(SQL_QUERY, null);
+        int recordCount = cursor.getCount();
 
         _restaurantInfoTableArrayList.clear();
-        int recordCount = cursor.getCount();
+
 
         for(int i = 0; i < recordCount ; i++){
             cursor.moveToNext();
@@ -214,10 +196,11 @@ public class DatabaseQueryService extends Activity{
                     cursor.getString(7));
             _restaurantInfoTableArrayList.add(foodofBestParcelable);
         }
+        cursor.close();
         Intent intent = new Intent();
         intent.putExtra("select",_restaurantInfoTableArrayList);
-        System.out.println("실행된 엑티비티"+self_check);
-        System.out.println("쿼리 :" + SQL_QUERY);
+
+
         setResult(RESULT_OK,intent);
         finish();
     }

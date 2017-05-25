@@ -158,9 +158,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
         _markerItems.add(new MarkerItem(2, "신선설농탕", "한식", "설렁탕", (float) 3.5, 37.540722, 126.838335, "dd"));
         _markerItems.add(new MarkerItem(3, "SUBWAY", "패스트푸드", "샌드위치", (float) 1.5, 37.540948, 126.840623, "dd"));
 */
-        for(MarkerItem markerItem : _markerItems) {
-            addMarker(markerItem);
-        }
+
     }
 
     @Override
@@ -168,6 +166,9 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
         if(requestCode == DATABASE_SERVICE_REQUEST){
             Intent get_intent = getIntent();
             _markerItems = (ArrayList<MarkerItem>) get_intent.getSerializableExtra("select");
+            for(MarkerItem markerItem : _markerItems) {
+                addMarker(markerItem);
+            }
         }
     }
 

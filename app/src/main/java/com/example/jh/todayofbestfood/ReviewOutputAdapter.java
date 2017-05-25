@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 public class ReviewOutputAdapter extends RecyclerView.Adapter<ReviewOutputAdapter.ViewHolder> {
 //
-    private ArrayList<ReviewInfo> _reviewInfoArrayList;
+    private ArrayList<ReviewParcelable> _reviewInfoArrayList;
 
-    public ReviewOutputAdapter(ArrayList<ReviewInfo> reviewInfoArrayList) {
+    public ReviewOutputAdapter(ArrayList<ReviewParcelable> reviewInfoArrayList) {
         _reviewInfoArrayList = reviewInfoArrayList;
     }
 
@@ -29,11 +29,11 @@ public class ReviewOutputAdapter extends RecyclerView.Adapter<ReviewOutputAdapte
 
     @Override
     public void onBindViewHolder(ReviewOutputAdapter.ViewHolder holder, int position) {
-        ReviewInfo reviewInfo = new ReviewInfo();
-        holder._reviewSelect_TV.setText(
-                reviewInfo.get_food_postscript() +
-                "\n"
-                +reviewInfo.get_restaurant_add_grade() );
+//        ReviewInfo reviewInfo = new ReviewInfo();
+//        holder._reviewSelect_TV.setText(
+//                reviewInfo.get_food_postscript() +
+//                "\n"
+//                +reviewInfo.get_restaurant_add_grade() );
     }
 
     @Override

@@ -31,9 +31,9 @@ public class ReviewActivity extends AppCompatActivity {
 
         _recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
 
-        ArrayList<ReviewInfo> foodOfBestInfos = loadData();
+        ArrayList<ReviewParcelable> reviewDatas = loadData();
         //adapter와 foodofbestinfo 연결
-        ReviewOutputAdapter adapter = new ReviewOutputAdapter(foodOfBestInfos);
+        ReviewOutputAdapter adapter = new ReviewOutputAdapter(reviewDatas);
         //recyclerview에 adapter 연결
         _recyclerView.setAdapter(adapter);
 
@@ -45,20 +45,13 @@ public class ReviewActivity extends AppCompatActivity {
 
     }//end onCreate
 
-    private ArrayList<ReviewInfo> loadData(){
+    private ArrayList<ReviewParcelable> loadData(){
 
-        ArrayList<ReviewInfo> foodOfBestInfos = new ArrayList<>();
-
-        for(int i=0; i<10; i++){
-            ReviewInfo reviewinfo = new ReviewInfo();
-            reviewinfo.set_food_postscript("후기 " + i);
-            reviewinfo.set_restaurant_add_grade(1 + i);
-
-            foodOfBestInfos.add(reviewinfo);
-        }
+        ArrayList<ReviewParcelable> reviewDatas = new ArrayList<>();
 
 
-        return foodOfBestInfos;
+
+        return reviewDatas;
     }
 
 

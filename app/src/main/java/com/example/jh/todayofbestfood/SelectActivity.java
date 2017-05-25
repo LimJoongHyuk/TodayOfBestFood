@@ -108,6 +108,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
 
     private void reviewButtonClick(View view) {
         Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
+        intent.putExtra("res_id", curRestaurantId);
         startActivityForResult(intent,REVIEW_ACTIVIEY);
     }
 

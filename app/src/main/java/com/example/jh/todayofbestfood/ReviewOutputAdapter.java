@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,11 +30,9 @@ public class ReviewOutputAdapter extends RecyclerView.Adapter<ReviewOutputAdapte
 
     @Override
     public void onBindViewHolder(ReviewOutputAdapter.ViewHolder holder, int position) {
-//        ReviewInfo reviewInfo = new ReviewInfo();
-//        holder._reviewSelect_TV.setText(
-//                reviewInfo.get_food_postscript() +
-//                "\n"
-//                +reviewInfo.get_restaurant_add_grade() );
+        ReviewParcelable reviewParcelable = _reviewInfoArrayList.get(position);
+        holder._reviewSelect_TV.setText(reviewParcelable.getscript());
+        holder._ratingBar.setRating(reviewParcelable.getgrade());
     }
 
     @Override
@@ -43,12 +42,12 @@ public class ReviewOutputAdapter extends RecyclerView.Adapter<ReviewOutputAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder{
         TextView _reviewSelect_TV;
+        RatingBar _ratingBar;
 
         public ViewHolder(View itemView) {
             super(itemView);
             _reviewSelect_TV = (TextView)itemView.findViewById(R.id.reviewSelect_TV);
+            _ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar_recycle);
         }
-
-
     }
 }

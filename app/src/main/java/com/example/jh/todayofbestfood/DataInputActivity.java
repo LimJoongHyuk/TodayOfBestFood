@@ -7,6 +7,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -93,13 +95,16 @@ public class DataInputActivity extends AppCompatActivity {
     }
 
 
-    //데이터 담기
+    //데이터 DB실행
     private void sendData(){
 
-        Intent intent = new Intent(this,DatabaseQuery.class);
+        Intent intent = new Intent(this,DatabaseQueryService.class);
         getData();
-        FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(_restaurantName,_recommendMenu,_restaurantgrade,_foodPostscript,
+     /*   FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable(_restaurantName,_recommendMenu,_restaurantgrade,_foodPostscript,
                                                                                 _latitude,_longitude,_foodImgName,_foodTagName);
+*/
+        FoodofBestParcelable foodofBestParcelable = new FoodofBestParcelable("1","2",1,"3","4","5","6","7");
+
 
         intent.putExtra(REGISTER_KEY,foodofBestParcelable);
         startActivityForResult(intent,TO_PARCELABLE);
@@ -138,6 +143,7 @@ public class DataInputActivity extends AppCompatActivity {
 
         }
         if(requestCode == TO_PARCELABLE){
+
             setResult(RESULT_OK);
             finish();
         }
@@ -157,5 +163,25 @@ public class DataInputActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), imgPath, Toast.LENGTH_SHORT).show();
 
         return imgPath;
+    }
+
+    // create an action bar button
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.home_btn) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

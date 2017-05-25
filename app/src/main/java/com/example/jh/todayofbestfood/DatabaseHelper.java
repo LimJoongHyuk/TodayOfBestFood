@@ -1,10 +1,8 @@
 package com.example.jh.todayofbestfood;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Bundle;
 import android.widget.Toast;
 
 import static java.sql.DriverManager.println;
@@ -16,7 +14,7 @@ import static java.sql.DriverManager.println;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static String DB_NAME = "TodayOfBestFood";
     private static int DB_VERSION = 1;
-    private DatabaseQuery db_query;
+    private DatabaseQueryService db_query;
 
     public static final String REGISTER_KEY = "REGISTER";
     public static final String REVIEW_KEY = "REVIEW";
@@ -39,7 +37,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
-            db_query = new DatabaseQuery();
+            db_query = new DatabaseQueryService();
             db.execSQL(db_query.onCreateTable_restaurant().toString());
             db.execSQL(db_query.onCreateTable_review().toString());
             Toast.makeText(_context, "Table 생성완료", Toast.LENGTH_SHORT).show();
@@ -56,22 +54,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         println("버전" + oldVersion + " 에서 버전" + newVersion + " 으로 업데이트 되었습니다.");
     }
 
-    public void createInputTable(){
 
-    }
-
-    public void createReviewTable(){
-
-    }
-
-    public void getReviewParcelable(Intent intent){
-        if(intent != null){
-            Bundle bundle = intent.getExtras();
-
-            ReviewParcelable reviewParcelable = (ReviewParcelable)bundle.getParcelable(REVIEW_KEY);
-
-            System.out.println("전달받은 데이터 : ");
-        }
-    }
 
 }

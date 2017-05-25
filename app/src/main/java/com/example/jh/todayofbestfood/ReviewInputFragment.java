@@ -2,9 +2,9 @@ package com.example.jh.todayofbestfood;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,11 +44,11 @@ public class ReviewInputFragment extends Fragment {
 
         System.out.println("입력 평점" + String.valueOf(_inputGrade_RB.getRating()));
 
-        Intent intent = new Intent(_activity.getApplicationContext(),DatabaseQuery.class);
+        Intent intent = new Intent(_activity.getApplicationContext(),DatabaseQueryService.class);
 
-//        ReviewParcelable reviewParcelable = new ReviewParcelable(_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
+        //ReviewParcelable reviewParcelable = new ReviewParcelable(_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
 
-//        intent.putExtra(KEY_REVIEWINPUT, reviewParcelable);
+        //intent.putExtra(KEY_REVIEWINPUT, reviewParcelable);
 
         startActivityForResult(intent, 2222);
     }

@@ -17,8 +17,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static com.example.jh.todayofbestfood.ReviewInputFragment.KEY_REVIEWINPUT;
-
 /**
  * Created by pdg on 2017-05-22.
  */
@@ -27,6 +25,7 @@ public class ReviewActivity extends AppCompatActivity {
     public static final String SELF_KEY = "SELFKEY";
     String isName = "ReviewActivityInsert";
     private static final int DATABASE_SERVICE_REQUEST = 109;
+    private static final String KEY_REVIEW_INPUT = "review";
 
     private RecyclerView _recyclerView;
     private int res_id;
@@ -132,7 +131,7 @@ public class ReviewActivity extends AppCompatActivity {
 
         ReviewParcelable reviewParcelable = new ReviewParcelable(res_id,_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
 
-        intent.putExtra(KEY_REVIEWINPUT, reviewParcelable);
+        intent.putExtra(KEY_REVIEW_INPUT, reviewParcelable);
         intent.putExtra(SELF_KEY,isName);
         startActivityForResult(intent, 2222);
     }

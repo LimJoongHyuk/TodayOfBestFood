@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, DataInputActivity.class);
 
             startActivityForResult(intent, REQUEST_DATA_INPUT);
-
+///
         }
     }
 

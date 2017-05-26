@@ -187,7 +187,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
                 markerImage.setImageResource(R.drawable.chinesefood_off);
                 break;
             case "패스트푸드" :
-                markerImage.setImageResource(R.drawable.fastfood_off);
+                markerImage.setImageResource(R.drawable.festfood_off);
                 break;
             case "한식" :
                 markerImage.setImageResource(R.drawable.koreanfood_off);

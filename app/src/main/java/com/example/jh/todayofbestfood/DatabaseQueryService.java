@@ -127,19 +127,19 @@ public class DatabaseQueryService extends Activity {
         SQL_QUERY = "Insert into " +
                 RESTAURANT_TABLE_NAME +
                 " values(null, '" +
-                foodofBestParcelable.get_restaurantName().toString() +
+                foodofBestParcelable.get_restaurantName() +
                 "', '" +
-                foodofBestParcelable.get_foodTagName().toString() +
+                foodofBestParcelable.get_foodTagName() +
                 "', '" +
-                foodofBestParcelable.get_recommendMenu().toString() +
+                foodofBestParcelable.get_recommendMenu() +
                 "', '" +
                 foodofBestParcelable.get_restaurantgrade() +
                 "', '" +
-                foodofBestParcelable.get_latitude().toString() +
+                foodofBestParcelable.get_latitude() +
                 "', '" +
-                foodofBestParcelable.get_longitude().toString() +
+                foodofBestParcelable.get_longitude() +
                 "', '" +
-                foodofBestParcelable.get_foodImgName().toString() +
+                foodofBestParcelable.get_foodImgName() +
                 "');";
 
         return SQL_QUERY;

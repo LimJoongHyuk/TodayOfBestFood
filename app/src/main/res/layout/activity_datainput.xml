@@ -1,170 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:weightSum="10"
+              android:background="#ffffff">
 
-    <ImageView
-        android:id="@+id/imageView_goodfood"
-        android:layout_width="123dp"
-        android:layout_height="247dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/snorlax" />
-
-    <EditText
-        android:id="@+id/editText_restaurantName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="가게이름"
-        android:inputType="textPersonName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
-
-    <EditText
-        android:id="@+id/editText_restaurant_recommend_food"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="추천메뉴"
-        android:inputType="textPersonName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_restaurantName"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
-
-    <EditText
-        android:id="@+id/editText_postscript"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="한줄평"
-        android:inputType="textPersonName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_restaurant_recommend_food"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
-
-    <RadioGroup
-        android:id="@+id/radioGroup"
-        android:layout_width="0dp"
-        android:layout_height="247dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintHorizontal_bias="0.944"
-        app:layout_constraintLeft_toRightOf="@+id/imageView_goodfood"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:weightSum="1">
-
-        <RadioButton
-            android:id="@+id/radioButton_fastfood"
-            android:layout_width="match_parent"
-            android:layout_height="69dp"
-            android:background="@drawable/fastfood_icon"
-            android:checked="true"
-            android:text="패스트푸드" />
-
-        <RadioButton
-            android:id="@+id/radioButton_chinesefood"
-            android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:background="@drawable/tag_chnisefood"
-            android:text="중식" />
-
-        <RadioButton
-            android:id="@+id/radioButton_japansefood"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/japanesefood_icon"
-            android:text="일식" />
-
-        <RadioButton
-            android:id="@+id/radioButton_koreanfood"
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:layout_weight="1"
-            android:text="한식"
-            tools:background="@drawable/koreanfood_icon" />
-
-    </RadioGroup>
-
+    <!--이미지뷰 라디오버튼 -->
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="361dp"
-        android:layout_height="78dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
         android:orientation="horizontal"
-        android:weightSum="1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_postscript"
-        android:layout_marginTop="8dp">
+        android:weightSum="2">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            >
+            <ImageView
+                android:id="@+id/imageView_goodfood"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/snorlax"/>
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView_goodfood"
-            android:layout_width="45dp"
-            android:layout_height="72dp"
-            app:srcCompat="@drawable/snorlax"
-            android:layout_weight="0.11" />
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
 
-        <RatingBar
-            android:id="@+id/ratingBar_total_grade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:numStars="5"
-            android:stepSize="0.5"
-            android:max="10"
-            android:isIndicator="false"
-            />
+            >
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="4"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/radioButton_fastfood"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/fastfood_icon"
+                        android:gravity="center"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_chinesefood"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/chinesefood_icon"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_japansefood"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/japanesefood_icon"
+                        />
+
+                    <RadioButton
+                        android:id="@+id/radioButton_koreanfood"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:button="@drawable/koreanfood_icon"
+                        />
+
+                </RadioGroup>
+            </TableRow>
+
+        </TableLayout>
+
 
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button_input"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:text="등록"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.952" />
 
-</android.support.constraint.ConstraintLayout>
+    <!--end 이미지뷰 라디오버튼 -->
+
+
+    <!--editText or imageView Ratingbar-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:orientation="vertical"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+            <!-- editText-->
+            <EditText
+                android:id="@+id/editText_restaurantName"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="가게이름 : "
+                android:inputType="textPersonName"
+                android:textColorHint="#df4242"
+                />
+
+            <EditText
+                android:id="@+id/editText_restaurant_recommend_food"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="추천메뉴 : "
+                android:inputType="textPersonName"
+                android:textColorHint="#df4242"
+                />
+
+            <EditText
+                android:id="@+id/editText_postscript"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="한줄평 : "
+                android:inputType="textPersonName"
+                android:textColorHint="#df4242"
+                />
+
+        </LinearLayout>
+        <!--end editText-->
+        <!--rating or img hori-->
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            >
+
+            <ImageView
+                android:id="@+id/imageView_goodfood"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:src="@drawable/snorlax"
+                />
+
+            <RatingBar
+                android:id="@+id/ratingBar_total_grade"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:numStars="5"
+                android:stepSize="0.5"
+                android:max="10"
+                android:isIndicator="false"
+                />
+        </LinearLayout>
+
+        <!--end rating or img hori-->
+
+    </LinearLayout>
+    <!--End editText or imageView Ratingbar-->
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/button_input"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+            android:text="등록"
+            />
+    </LinearLayout>
+</LinearLayout>

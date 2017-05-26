@@ -12,8 +12,6 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
-import static com.example.jh.todayofbestfood.ReviewInputFragment.KEY_REVIEWINPUT;
-
 /**
  * Created by pdg on 2017-05-22.
  */
@@ -35,7 +33,7 @@ public class ReviewActivity extends AppCompatActivity {
     private int select_id;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 

@@ -81,7 +81,7 @@ public class DatabaseQueryService extends Activity {
 
         reviewParcelable = (ReviewParcelable) bundle.getParcelable(REVIEW_KEY);
 
-        SQL_QUERY = "Insert into " + REVIEW_TABLE_NAME + " values(null,1, '" + reviewParcelable.getscript().toString() + "' , " +
+        SQL_QUERY = "Insert into " + REVIEW_TABLE_NAME + " values(null, " + reviewParcelable.getChoiceRestaurantId() + ", '" + reviewParcelable.getscript().toString() + "' , " +
                 " " + reviewParcelable.getgrade() + " ); ";
 
         return SQL_QUERY;
@@ -213,7 +213,7 @@ public class DatabaseQueryService extends Activity {
 
     public void getRestaurantReviewTableDataBundle(int id) {
         //select 에 * 를 생성자 위치랑 맞춰준다.
-        System.out.println("실행된 엑티비티" + self_check);
+        System.out.println("실행된 엑티비티" + self_check + id);
         db = databaseHelper.getWritableDatabase();
         SQL_QUERY = "select * from " + REVIEW_TABLE_NAME + " where restaurant_id = " + id + ";";
 

@@ -25,7 +25,7 @@ public class ReviewActivity extends AppCompatActivity {
     public static final String SELF_KEY = "SELFKEY";
     String isName = "ReviewActivityInsert";
     private static final int DATABASE_SERVICE_REQUEST = 109;
-    private static final String KEY_REVIEW_INPUT = "review";
+    private static final String KEY_REVIEW_INPUT = "REVIEW";
 
     private RecyclerView _recyclerView;
     private int res_id;
@@ -123,7 +123,7 @@ public class ReviewActivity extends AppCompatActivity {
 
     public void inputOperationButtonClick(View view) {
 
-        System.out.println("입력 리뷰" + _inputReview_ET.getText().toString());
+        System.out.println("입력 리뷰" + _inputReview_ET.getText().toString() + res_id);
 
         System.out.println("입력 평점" + String.valueOf(_inputGrade_RB.getRating()));
 

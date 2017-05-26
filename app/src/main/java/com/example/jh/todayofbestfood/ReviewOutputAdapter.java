@@ -49,5 +49,7 @@ public class ReviewOutputAdapter extends RecyclerView.Adapter<ReviewOutputAdapte
             _reviewSelect_TV = (TextView)itemView.findViewById(R.id.reviewSelect_TV);
             _ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar_recycle);
         }
+
+
     }
 }

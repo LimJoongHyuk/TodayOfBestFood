@@ -20,11 +20,15 @@ public class DatabaseQueryService extends Activity {
 
     private String SQL_QUERY;
     String self_check;
-    private int res_id;
 
     public static final String REGISTER_KEY = "REGISTER";
     public static final String REVIEW_KEY = "REVIEW";
     public static final String SELF_KEY = "SELFKEY";
+    public static final String KEY_REVIEWINPUT="REVIEW";
+    public static final String RESTAURANT_SELECT_KEY = "RestaurantSelect";
+    public static final String REVIEW_SELECT_PUT_KEY = "ReViewSelectPut";
+    public static final String REVIEW_SELECT_ID_KEY = "ReviewSelectIdKet";
+
 
     SQLiteDatabase db;
     DatabaseHelper databaseHelper;
@@ -38,7 +42,6 @@ public class DatabaseQueryService extends Activity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         self_check = bundle.getString(SELF_KEY).toString();
-        res_id = bundle.getInt("res_id");
         query_judgment(self_check, bundle);
 
 
@@ -50,7 +53,7 @@ public class DatabaseQueryService extends Activity {
                 restaurantInsert(bundle);
                 excuteSqlQuery();
                 break;
-            case "ReviewActivityInsert":
+            case "ReviewInputFragment":
                 reviewInsert(bundle);
                 excuteSqlQuery();
                 break;
@@ -58,13 +61,14 @@ public class DatabaseQueryService extends Activity {
                 getRestaurantInfoTableDataBundle();
                 break;
             case "ReviewActivity":
-                getRestaurantReviewTableDataBundle(res_id);
+                getRestaurantReviewTableDataBundle(bundle);
                 break;
         }
     }
 
     public void excuteSqlQuery() {
         try {
+            System.out.println(SQL_QUERY);
             db = databaseHelper.getWritableDatabase();
             db.execSQL(SQL_QUERY);
             System.out.println("실행된 엑티비티" + self_check);
@@ -79,9 +83,9 @@ public class DatabaseQueryService extends Activity {
     //음식점 리뷰남기기
     public String reviewInsert(Bundle bundle) {
 
-        reviewParcelable = (ReviewParcelable) bundle.getParcelable(REVIEW_KEY);
+        reviewParcelable = (ReviewParcelable) bundle.getParcelable(KEY_REVIEWINPUT);
 
-        SQL_QUERY = "Insert into " + REVIEW_TABLE_NAME + " values(null,1, '" + reviewParcelable.getscript().toString() + "' , " +
+        SQL_QUERY = "Insert into " + REVIEW_TABLE_NAME + " values(null,"+reviewParcelable.getChoiceRestaurantId()+", '" + reviewParcelable.getscript().toString() + "' , " +
                 " " + reviewParcelable.getgrade() + " ); ";
 
         return SQL_QUERY;
@@ -204,18 +208,21 @@ public class DatabaseQueryService extends Activity {
         }
         cursor.close();
         Intent intent = new Intent();
-        intent.putExtra("select", _restaurantInfoTableArrayList);
+        intent.putExtra(RESTAURANT_SELECT_KEY, _restaurantInfoTableArrayList);
         setResult(RESULT_OK, intent);
         finish();
     }
 
     private ArrayList<ReviewParcelable> _restaurantReviewTableArrayList = new ArrayList<>();
 
-    public void getRestaurantReviewTableDataBundle(int id) {
+    public void getRestaurantReviewTableDataBundle(Bundle bundle) {
         //select 에 * 를 생성자 위치랑 맞춰준다.
+        int id = bundle.getInt(REVIEW_SELECT_ID_KEY);
+        System.out.println("sq서비스가 받은 아이디값" + id);
+        //   String[] args = {String.valueOf(id)};
         System.out.println("실행된 엑티비티" + self_check);
         db = databaseHelper.getWritableDatabase();
-        SQL_QUERY = "select * from " + REVIEW_TABLE_NAME + " where restaurant_id = " + id + ";";
+        SQL_QUERY = "select * from " + REVIEW_TABLE_NAME + " where restaurant_id = " + id;
 
         System.out.println("쿼리 :" + SQL_QUERY);
         Cursor cursor = db.rawQuery(SQL_QUERY, null);
@@ -234,7 +241,7 @@ public class DatabaseQueryService extends Activity {
         }
         cursor.close();
         Intent intent = new Intent();
-        intent.putExtra("select", _restaurantReviewTableArrayList);
+        intent.putParcelableArrayListExtra(REVIEW_SELECT_PUT_KEY, _restaurantReviewTableArrayList);
         setResult(RESULT_OK, intent);
         finish();
     }

@@ -23,10 +23,5 @@
 
     </ScrollView>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/back_BT"
-        android:text="뒤로 가기 "/>
 
 </LinearLayout>

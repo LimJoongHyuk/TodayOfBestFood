@@ -27,8 +27,6 @@ public class ReviewActivity extends AppCompatActivity {
     private static final int DATABASE_SERVICE_REQUEST = 109;
     private static final String KEY_REVIEW_INPUT = "REVIEW";
 
-    private static final int BACKBUTTONREQUEST = 0001;
-
     private RecyclerView _recyclerView;
     private int res_id;
 
@@ -38,7 +36,6 @@ public class ReviewActivity extends AppCompatActivity {
 
     TextView txtReview;
     RatingBar ratingbar;
-    ReviewActivity _reviewActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

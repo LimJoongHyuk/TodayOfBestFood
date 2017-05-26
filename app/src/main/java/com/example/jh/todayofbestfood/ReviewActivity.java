@@ -2,7 +2,6 @@ package com.example.jh.todayofbestfood;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -12,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+
+import static com.example.jh.todayofbestfood.ReviewInputFragment.KEY_REVIEWINPUT;
 
 /**
  * Created by pdg on 2017-05-22.
@@ -37,6 +38,8 @@ public class ReviewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+
+
         //fragment
         select_view();
 

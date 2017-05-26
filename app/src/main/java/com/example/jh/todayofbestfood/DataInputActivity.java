@@ -151,7 +151,7 @@ public class DataInputActivity extends AppCompatActivity {
           _latitude = gpsService.getLatitude().toString();
           _longitude = gpsService.getLongitude().toString();
           _foodImgName = imgName;
-          _foodTagName = rd.getText().toString();
+          _foodTagName = tagName;
           _foodPostscript = editText_postscript.getText().toString();
 
     }

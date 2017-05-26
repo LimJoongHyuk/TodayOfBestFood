@@ -60,7 +60,7 @@
                 android:id="@+id/textView_restaurantName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="식당명."
+                android:text="음식점을 선택해 주세요!"
                 android:textSize="20dp"
                 android:textStyle="bold"
                 android:textAlignment="center"/>
@@ -69,14 +69,14 @@
                 android:id="@+id/textView_tag"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="주소"
+                android:text="구분 : "
                 android:textSize="20dp"/>
 
             <TextView
                 android:id="@+id/textView_RecommendFood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="추천메뉴"
+                android:text="추천메뉴 :"
                 android:textSize="20dp"/>
 
             <Button

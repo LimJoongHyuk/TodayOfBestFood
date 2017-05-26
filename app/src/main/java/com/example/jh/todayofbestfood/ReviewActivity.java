@@ -36,6 +36,7 @@ public class ReviewActivity extends AppCompatActivity {
 
     TextView txtReview;
     RatingBar ratingbar;
+    ReviewActivity _reviewActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +70,8 @@ public class ReviewActivity extends AppCompatActivity {
 
         _inputOperation_BT.setOnClickListener(this::inputOperationButtonClick);
 
+
+
         System.out.println("요청된 아이디 : " + res_id);
     }//end onCreate
 
@@ -86,6 +89,7 @@ public class ReviewActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         _recyclerView.setLayoutManager(layoutManager);
         _recyclerView.setItemAnimator(new DefaultItemAnimator());
+
     }
 
     // create an action bar button
@@ -134,6 +138,14 @@ public class ReviewActivity extends AppCompatActivity {
         intent.putExtra(KEY_REVIEW_INPUT, reviewParcelable);
         intent.putExtra(SELF_KEY,isName);
         startActivityForResult(intent, 2222);
+
+        finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        showReview();
     }
 }
 

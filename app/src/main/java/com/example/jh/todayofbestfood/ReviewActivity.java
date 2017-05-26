@@ -3,7 +3,6 @@ package com.example.jh.todayofbestfood;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -77,19 +76,7 @@ public class ReviewActivity extends AppCompatActivity {
 
         System.out.println("요청된 아이디 : " + res_id);
 
-
-
-        Button back_BT = (Button)findViewById(R.id.back_BT);
-
-        back_BT.setOnClickListener(this::backButtonClick);
     }//end onCreate
-
-    private void backButtonClick(View view) {
-        Intent intent = new Intent(getApplicationContext(),SelectActivity.class);
-
-        startActivityForResult(intent,BACKBUTTONREQUEST);
-        finish();
-    }
 
     private ArrayList<ReviewParcelable> loadData(){
         return reviews;
@@ -147,7 +134,7 @@ public class ReviewActivity extends AppCompatActivity {
 
         System.out.println("입력 평점" + String.valueOf(_inputGrade_RB.getRating()));
 
-        if(_inputReview_ET.getText().toString().equals(null)) {
+//        if(_inputReview_ET.getText().toString().equals(null)) {
 
             Intent intent = new Intent(view.getContext(), DatabaseQueryService.class);
 
@@ -158,15 +145,15 @@ public class ReviewActivity extends AppCompatActivity {
             startActivityForResult(intent, 2222);
 
             finish();
-        } else {
-            AlertDialog.Builder dig = new AlertDialog.Builder(ReviewActivity.this);
-            dig.setTitle("알림!");
-            dig.setMessage("리뷰를 작성해주세요.");
-            dig.setPositiveButton("확인", (dialog, which) -> {
-
-            });
-            dig.show();
-        }
+//        } else {
+//            AlertDialog.Builder dig = new AlertDialog.Builder(ReviewActivity.this);
+//            dig.setTitle("알림!");
+//            dig.setMessage("리뷰를 작성해주세요.");
+//            dig.setPositiveButton("확인", (dialog, which) -> {
+//
+//            });
+//            dig.show();
+//        }
     }
 
 }

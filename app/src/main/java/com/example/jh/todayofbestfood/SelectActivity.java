@@ -80,7 +80,6 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
                 setCustomMarkerView();
 
                 requestMyLocation();
-                zoomCamera(_latLng);
                 map.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) SelectActivity.this);
             }
         });

@@ -38,6 +38,8 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
     private static final int REVIEW_ACTIVIEY = 107;
 
     public static final String SELF_KEY = "SELFKEY";
+    public static final String REVIEW_SELECT_KEY = "ReViewSelect";
+    public static final String RESTAURANT_SELECT_KEY = "RestaurantSelect";
     String isName = "SelectActivity";
     TextView txtRestaurantName, txtRestaurantTag, txtRecommendFood;
     RatingBar ratingBar;
@@ -107,7 +109,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
 
     private void reviewButtonClick(View view) {
         Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
-        intent.putExtra("res_id", curRestaurantId);
+        intent.putExtra(REVIEW_SELECT_KEY,curRestaurantId);
         startActivityForResult(intent,REVIEW_ACTIVIEY);
     }
 
@@ -122,7 +124,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
             _latLng = gpsService.getlatLng();
             showCurrentLocation(_latLng);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -155,19 +157,13 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
         intent.putExtra(SELF_KEY,isName);
         startActivityForResult(intent,DATABASE_SERVICE_REQUEST);
 
-
- /*       _markerItems.add(new MarkerItem(1, "삼국지", "중식", "볶음밥", (float)4.5, 37.542425, 126.841514, "dd"));
-        _markerItems.add(new MarkerItem(2, "신선설농탕", "한식", "설렁탕", (float) 3.5, 37.540722, 126.838335, "dd"));
-        _markerItems.add(new MarkerItem(3, "SUBWAY", "패스트푸드", "샌드위치", (float) 1.5, 37.540948, 126.840623, "dd"));
-*/
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == DATABASE_SERVICE_REQUEST){
 
-            _markerItems = (ArrayList<MarkerItem>) data.getSerializableExtra("select");
+            _markerItems = (ArrayList<MarkerItem>) data.getSerializableExtra(RESTAURANT_SELECT_KEY);
             for(MarkerItem markerItem : _markerItems) {
                 addMarker(markerItem);
                 System.out.println("요청된 데이터 : " + markerItem.getRestaurantId() + " " + markerItem.getRestaurantName() + " " + markerItem.getFoodTag());
@@ -175,7 +171,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
 
         }
     }
-
+        //마커찍기
     private void addMarker(MarkerItem markerItem) {
         LatLng position = new LatLng(markerItem.getRestaurantLatitude(), markerItem.getRestaurantLongitude());
 
@@ -188,16 +184,16 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
 
         switch (food_tag.toString()) {
             case "중식" :
-                markerImage.setImageResource(R.drawable.chinesefood_icon_off);
+                markerImage.setImageResource(R.drawable.chinesefood_off);
                 break;
             case "패스트푸드" :
-                markerImage.setImageResource(R.drawable.fastfood_icon);
+                markerImage.setImageResource(R.drawable.fastfood_off);
                 break;
             case "한식" :
-                markerImage.setImageResource(R.drawable.koreanfood_icon);
+                markerImage.setImageResource(R.drawable.koreanfood_off);
                 break;
             case "일식" :
-                markerImage.setImageResource(R.drawable.japanesefood_icon);
+                markerImage.setImageResource(R.drawable.japanesefood_off);
                 break;
             default:
         }

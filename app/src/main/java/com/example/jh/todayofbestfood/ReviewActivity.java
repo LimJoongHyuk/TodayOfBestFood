@@ -27,6 +27,8 @@ public class ReviewActivity extends AppCompatActivity {
     private static final int DATABASE_SERVICE_REQUEST = 109;
     private static final String KEY_REVIEW_INPUT = "REVIEW";
 
+    private static final int BACKBUTTONREQUEST = 0001;
+
     private RecyclerView _recyclerView;
     private int res_id;
 
@@ -73,7 +75,20 @@ public class ReviewActivity extends AppCompatActivity {
 
 
         System.out.println("요청된 아이디 : " + res_id);
+
+
+
+        Button back_BT = (Button)findViewById(R.id.back_BT);
+
+        back_BT.setOnClickListener(this::backButtonClick);
     }//end onCreate
+
+    private void backButtonClick(View view) {
+        Intent intent = new Intent(getApplicationContext(),SelectActivity.class);
+
+        startActivityForResult(intent,BACKBUTTONREQUEST);
+        finish();
+    }
 
     private ArrayList<ReviewParcelable> loadData(){
         return reviews;

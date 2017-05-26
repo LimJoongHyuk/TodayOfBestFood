@@ -148,8 +148,8 @@ public class DataInputActivity extends AppCompatActivity {
           _restaurantName = editText_restaurantName.getText().toString();
           _recommendMenu = editText_restaurant_recommend_food.getText().toString();
           _restaurantgrade = ratingBar.getRating() ;
-          _latitude = gpsService.getLatitude().toString();
-          _longitude = gpsService.getLongitude().toString();
+          _latitude = String.valueOf(gpsService.getLatitude());
+          _longitude = String.valueOf(gpsService.getLongitude());
           _foodImgName = imgName;
           _foodTagName = tagName;
           _foodPostscript = editText_postscript.getText().toString();

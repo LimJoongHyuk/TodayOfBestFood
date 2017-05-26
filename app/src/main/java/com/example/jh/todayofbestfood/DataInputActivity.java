@@ -149,11 +149,6 @@ public class DataInputActivity extends AppCompatActivity {
         intent.putExtra(SELF_KEY,isName);
         startActivityForResult(intent,TO_PARCELABLE);
 
-
-
-
-
-
     }
     private void getData(){
 

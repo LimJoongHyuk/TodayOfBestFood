@@ -16,9 +16,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static int DB_VERSION = 1;
     private DatabaseQueryService db_query;
 
-    public static final String REGISTER_KEY = "REGISTER";
-    public static final String REVIEW_KEY = "REVIEW";
-
     private Context _context;
 
     public DatabaseHelper(Context context) {

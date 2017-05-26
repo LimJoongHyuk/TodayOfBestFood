@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.IdRes;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -113,7 +114,19 @@ public class DataInputActivity extends AppCompatActivity {
 
     // 등록버튼 클릭
     private void dataInputClick(View view) {
-        sendData();
+        if(editText_postscript.getText().toString().equals(null) &&
+                editText_restaurant_recommend_food.getText().toString().equals(null) &&
+                editText_restaurantName.getText().toString().equals(null)) {
+            sendData();
+        } else {
+            AlertDialog.Builder dig = new AlertDialog.Builder(DataInputActivity.this);
+            dig.setTitle("알림!");
+            dig.setMessage("데이터를 모두 작성해주세요.");
+            dig.setPositiveButton("확인", (dialog, which) -> {
+
+            });
+            dig.show();
+        }
     }
     //이미지 가져오기
     private void getAlbumphotoClick(View view) {

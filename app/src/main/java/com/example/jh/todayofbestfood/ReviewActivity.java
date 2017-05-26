@@ -3,6 +3,7 @@ package com.example.jh.todayofbestfood;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -146,21 +147,27 @@ public class ReviewActivity extends AppCompatActivity {
 
         System.out.println("입력 평점" + String.valueOf(_inputGrade_RB.getRating()));
 
-        Intent intent = new Intent(view.getContext(),DatabaseQueryService.class);
+        if(_inputReview_ET.getText().toString().equals(null)) {
 
-        ReviewParcelable reviewParcelable = new ReviewParcelable(res_id,_inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
+            Intent intent = new Intent(view.getContext(), DatabaseQueryService.class);
 
-        intent.putExtra(KEY_REVIEW_INPUT, reviewParcelable);
-        intent.putExtra(SELF_KEY,isName);
-        startActivityForResult(intent, 2222);
+            ReviewParcelable reviewParcelable = new ReviewParcelable(res_id, _inputReview_ET.getText().toString(), _inputGrade_RB.getRating());
 
-        finish();
+            intent.putExtra(KEY_REVIEW_INPUT, reviewParcelable);
+            intent.putExtra(SELF_KEY, isName);
+            startActivityForResult(intent, 2222);
+
+            finish();
+        } else {
+            AlertDialog.Builder dig = new AlertDialog.Builder(ReviewActivity.this);
+            dig.setTitle("알림!");
+            dig.setMessage("리뷰를 작성해주세요.");
+            dig.setPositiveButton("확인", (dialog, which) -> {
+
+            });
+            dig.show();
+        }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        showReview();
-    }
 }
 

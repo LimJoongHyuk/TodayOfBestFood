@@ -5,13 +5,15 @@
     android:layout_height="match_parent"
     tools:context="com.example.jh.todayofbestfood.MainActivity"
     android:orientation="vertical"
-    android:weightSum="5">
+    android:weightSum="5"
+    android:background="#EEE8AA">
 
     <ImageView
         android:id="@+id/imageView_logo"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="3" />
+        android:layout_weight="3"
+        android:src="@drawable/jamlogo"/>
 
     <Button
         android:layout_width="match_parent"
@@ -19,7 +21,8 @@
         android:layout_weight="1"
         android:text="맛집 등록"
         android:textSize="25dp"
-        android:id="@+id/btnAdd"/>
+        android:id="@+id/btnAdd"
+        android:background="#E9967A"/>
 
     <Button
         android:layout_width="match_parent"
@@ -27,5 +30,6 @@
         android:layout_weight="1"
         android:text="맛집 검색"
         android:textSize="25dp"
-        android:id="@+id/btnSearch"/>
+        android:id="@+id/btnSearch"
+        android:background="#8BC6AF"/>
 </LinearLayout>

@@ -50,13 +50,12 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
     GoogleMap map;
 
     private MarkerOptions _markerOptions;
-    static final LatLng SEOUL = new LatLng(37.56, 126.97);
-    private ImageView imageView_food;
     private ArrayList<MarkerItem> _markerItems;
 
     private int curRestaurantId;
     private Button _button_location;
     private Button _button_review;
+    private LatLng _latLng;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,10 +79,8 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
 
                 setCustomMarkerView();
 
-                _markerOptions = new MarkerOptions();
-                _markerOptions.position(SEOUL);
-                map.addMarker(_markerOptions);
-                zoomCamera(SEOUL);
+                requestMyLocation();
+                zoomCamera(_latLng);
                 map.setOnMarkerClickListener((GoogleMap.OnMarkerClickListener) SelectActivity.this);
             }
         });
@@ -123,10 +120,10 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
         try {
             GPSService gpsService = new GPSService(SelectActivity.this);
             gpsService.startLocationService();
-            LatLng latLng = gpsService.getlatLng();
-            showCurrentLocation(latLng);
+            _latLng = gpsService.getlatLng();
+            showCurrentLocation(_latLng);
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
     }
 

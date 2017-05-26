@@ -188,16 +188,16 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
 
         switch (food_tag.toString()) {
             case "중식" :
-                markerImage.setImageResource(R.drawable.chinesefood_icon_off);
+                markerImage.setImageResource(R.drawable.chinesefood_off);
                 break;
             case "패스트푸드" :
-                markerImage.setImageResource(R.drawable.fastfood_icon);
+                markerImage.setImageResource(R.drawable.fastfood_off);
                 break;
             case "한식" :
-                markerImage.setImageResource(R.drawable.koreanfood_icon);
+                markerImage.setImageResource(R.drawable.koreanfood_off);
                 break;
             case "일식" :
-                markerImage.setImageResource(R.drawable.japanesefood_icon);
+                markerImage.setImageResource(R.drawable.japanesefood_off);
                 break;
             default:
         }

@@ -48,13 +48,14 @@
                     android:weightSum="4"
                     >
 
+
                     <RadioButton
                         android:id="@+id/radioButton_fastfood"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:button="@drawable/fastfood_icon"
                         android:gravity="center"
+                        android:text="패스트푸드"
                         />
 
                     <RadioButton
@@ -62,7 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:button="@drawable/chinesefood_icon"
+                        android:text="중식"
                         />
 
                     <RadioButton
@@ -70,7 +71,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:button="@drawable/japanesefood_icon"
+                        android:text="일식"
                         />
 
                     <RadioButton
@@ -78,8 +79,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:button="@drawable/koreanfood_icon"
-                        />
+                        android:text="한식"
+                       />
 
                 </RadioGroup>
             </TableRow>

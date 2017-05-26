@@ -55,6 +55,8 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
     private ArrayList<MarkerItem> _markerItems;
 
     private int curRestaurantId;
+    private Button _button_location;
+    private Button _button_review;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,11 +94,13 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
             e.printStackTrace();
         }
 
-        Button button_location = (Button) findViewById(R.id.btnLocation);
-        Button button_review = (Button) findViewById(R.id.btnReview);
+        _button_location = (Button) findViewById(R.id.btnLocation);
+        _button_review = (Button) findViewById(R.id.btnReview);
 
-        button_location.setOnClickListener(this::locationButtonClick);
-        button_review.setOnClickListener(this::reviewButtonClick);
+        _button_review.setVisibility(View.INVISIBLE);
+
+        _button_location.setOnClickListener(this::locationButtonClick);
+        _button_review.setOnClickListener(this::reviewButtonClick);
 
     }
 
@@ -223,6 +227,7 @@ public class SelectActivity extends AppCompatActivity implements GoogleMap.OnMar
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        _button_review.setVisibility(View.VISIBLE);
         for(MarkerItem markerItem : _markerItems) {
             if(markerItem.getRestaurantName().equals(marker.getTitle())) {
                 txtRestaurantName.setText(markerItem.getRestaurantName());
